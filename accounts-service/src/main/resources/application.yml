@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "accounts"
+    logging:
+      level:
+        root: DEBUG
+  datasource:
+    url: jdbc:mysql://localhost:3306/accounts_bank_aht
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      auto-offset-reset: earliest
+      group-id: TransactionGroup
+      maxPollIntervalMs: 3000
+      properties:
+        session.timeout.ms: 100000
+#        max.poll.interval.ms: 30000  # Thiết lập thời gian tối đa giữa các lần poll (milliseconds)
+        max.poll.records: 1000       # Số lượng tối đa các message mà consumer sẽ poll trong một lần
+
+  #        session.timeout.ms: 30000
+#        auto.commit.interval.ms: 1000
+#        enable.auto.commit: false
+
+
+  sql:
+    init:
+      mode: always
