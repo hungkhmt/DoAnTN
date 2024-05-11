@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: transaction-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/transaction_bank_aht
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 10
+      properties:
+        request.timeout.ms: 10
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+    topic:
+      name: balance_updates
+
+
+server:
+  port: 9000
+
+#spring.kafka.producer.acks=-1
+#spring.kafka.producer.retries=1
+#spring.kafka.producer.properties.[request.timeout.ms]=1
+#spring.kafka.producer.properties.[enable.idempotence]=true
+#spring.kafka.producer.properties.[max.in.flight.requests.per.connection]=5

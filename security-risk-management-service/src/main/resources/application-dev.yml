@@ -1,0 +1,14 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: security-risk-management-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/security-risk-management-service
+    username: root
+    password: Huynguyen11102002
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update

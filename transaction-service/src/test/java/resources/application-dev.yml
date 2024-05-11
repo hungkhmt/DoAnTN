@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: transaction-service
+  datasource:
+    url: jdbc:h2:~/transaction-service
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    topic:
+      name: balance_updates
+
+server:
+  port: 9000
+
+
+
