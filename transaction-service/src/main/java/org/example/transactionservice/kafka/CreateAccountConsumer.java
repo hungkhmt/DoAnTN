@@ -3,6 +3,7 @@ package org.example.transactionservice.kafka;
 import lombok.AllArgsConstructor;
 import org.example.transactionservice.common.AccountType;
 import org.example.transactionservice.model.BankAccount;
+import org.example.transactionservice.model.MessageCreateAccount;
 import org.example.transactionservice.service.IService.IBankAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,4 +47,28 @@ public class CreateAccountConsumer {
         bankAccount.setBalance(balance);
         accountService.createAccount(bankAccount);
     }
+
+//    @KafkaListener(
+//            topics = "create_account",
+//            groupId = "myGroup"
+//    )
+//    public void consumer(MessageCreateAccount messageCreateAccount) {
+//
+//
+////        AccountId+" "+CustomerId+" "+AccountType+" "+Balance+" "+enable;
+//        LOGGER.info(String.format("Event message received => %s", messageCreateAccount));
+//
+//
+//        BankAccount account= BankAccount.builder()
+//                .accountId(messageCreateAccount.getAccountId())
+//                .userId(messageCreateAccount.getCustomerId())
+//                .enable(messageCreateAccount.getEnable())
+//                .build();
+//        if(messageCreateAccount.getAccountType().equals("SAVINGS")){
+//            account.setAccountType(AccountType.SAVINGS);
+//        }else if (messageCreateAccount.getAccountType().equals("CHECKOUT")){
+//            account.setAccountType(AccountType.CHECKOUT);
+//        }
+//        accountService.createAccount(account);
+//    }
 }

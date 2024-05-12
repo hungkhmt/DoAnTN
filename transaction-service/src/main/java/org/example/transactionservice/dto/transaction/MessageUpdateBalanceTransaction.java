@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageTransaction {
+public class MessageUpdateBalanceTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class MessageTransaction {
     private Long amount;
 
     private Boolean status;
-    public MessageTransaction( Long accountId, Long amount){
+    public MessageUpdateBalanceTransaction(Long accountId, Long amount){
       this.accountId=accountId;
         this.amount=amount;
     }

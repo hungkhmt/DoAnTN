@@ -1,7 +1,7 @@
 package org.example.transactionservice.service.implement;
 
 import jakarta.transaction.Transactional;
-import org.example.transactionservice.dto.transaction.MessageTransaction;
+import org.example.transactionservice.dto.transaction.MessageUpdateBalanceTransaction;
 import org.example.transactionservice.exception.AccountIsNotValidException;
 import org.example.transactionservice.exception.ResourceNoFoundException;
 import org.example.transactionservice.model.BankAccount;
@@ -48,7 +48,7 @@ public class BankAccountService implements IBankAccountService {
 
         bankAccount.setBalance(updatedBalance);
         bankAccountRepository.save(bankAccount);
-       MessageTransaction messageTransaction= new MessageTransaction(accountId,amount.longValue());
+       MessageUpdateBalanceTransaction messageTransaction= new MessageUpdateBalanceTransaction(accountId,amount.longValue());
        messageTransaction.setStatus(false);
        messageUpdateBalanceRepository.save(messageTransaction);
 

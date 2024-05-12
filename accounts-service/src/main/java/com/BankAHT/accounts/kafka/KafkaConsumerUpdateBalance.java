@@ -1,7 +1,7 @@
 package com.BankAHT.accounts.kafka;
 
 import com.BankAHT.accounts.dto.AccountDto;
-import com.BankAHT.accounts.dto.MessageTransaction;
+import com.BankAHT.accounts.dto.MessageUpdateBalanceTransaction;
 import com.BankAHT.accounts.repository.MessageTransactionRepository;
 import com.BankAHT.accounts.service.impl.AccountServiceImlp;
 import jakarta.transaction.Transactional;
@@ -9,16 +9,9 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
-import org.springframework.kafka.listener.DefaultErrorHandler;
-import org.springframework.kafka.support.Acknowledgment;
-import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Service;
-import org.springframework.util.backoff.FixedBackOff;
 
 @Service
 @AllArgsConstructor
@@ -39,7 +32,7 @@ public class KafkaConsumerUpdateBalance {
             id = "balanceListener"
     )
     @Transactional
-    public void consume(MessageTransaction messageTransaction) {
+    public void consume(MessageUpdateBalanceTransaction messageTransaction) {
         try {
             LOGGER.info(String.format("Event message received => %s", messageTransaction));
             messageTransactionRepository.save(messageTransaction);

@@ -1,6 +1,6 @@
 package org.example.transactionservice.repository;
 
-import org.example.transactionservice.dto.transaction.MessageTransaction;
+import org.example.transactionservice.dto.transaction.MessageUpdateBalanceTransaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -19,9 +19,9 @@ public class TestMessageUpdateBalanceRepository {
 
     @Test
     public void findByStatus(){
-        List<MessageTransaction> listMessage= messageUpdateBalanceRepository.findByStatus(false);
+        List<MessageUpdateBalanceTransaction> listMessage= messageUpdateBalanceRepository.findByStatus(false);
         int sum=0;
-        for(MessageTransaction messageTransaction: listMessage){
+        for(MessageUpdateBalanceTransaction messageTransaction: listMessage){
             sum=sum+1;
         }
         System.out.println(sum);

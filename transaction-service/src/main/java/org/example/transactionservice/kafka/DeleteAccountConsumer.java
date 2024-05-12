@@ -1,11 +1,14 @@
 package org.example.transactionservice.kafka;
 
 import lombok.AllArgsConstructor;
+import org.example.transactionservice.dto.transaction.MessageUpdateAccount;
 import org.example.transactionservice.service.IService.IBankAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class DeleteAccountConsumer {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(CreateAccountConsumer.class);
+
 
     @Qualifier("bankAccountService")
     private IBankAccountService accountService;
