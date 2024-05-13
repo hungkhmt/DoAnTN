@@ -37,5 +37,11 @@ public class CreateUserForAdminForm {
     @Length(min = 6, max = 50, message = "{User.createUser.fullname.LenghtRange}")
     private String fullname;
 
+    private String dateOfBirth;
+
+    private String phoneNumber;
+
+    private String address;
+
     private Set<Role> roles;
 }
