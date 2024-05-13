@@ -20,6 +20,7 @@ public class AccountMapper {
         accountDto.setCustomerId(accounts.getCustomerId());
         accountDto.setAccountId(accounts.getAccountId());
         accountDto.setBalance(accounts.getBalance());
+        accountDto.setCreatedAt(accounts.getCreatedAt());
         return accountDto;
     }
 }

@@ -59,7 +59,7 @@ public class BankAccountService implements IBankAccountService {
         BankAccount accountSave= new BankAccount();
         accountSave.setAccountId(account.getAccountId());
         accountSave.setAccountType(account.getAccountType());
-        accountSave.setUserId(account.getAccountId());
+        accountSave.setUserId(account.getUserId());
         accountSave.setBalance(account.getBalance());
         accountSave.setEnable(true);
         bankAccountRepository.save(accountSave);

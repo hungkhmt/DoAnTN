@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class AccountDto {
 
@@ -21,6 +23,8 @@ public class AccountDto {
     @NotEmpty(message = "Balance không thể là null hoặc empty")
     private Long balance;
 
+
+    private Timestamp createdAt;
     public String toString(){
         return customerId+" "+accountId+" "+accountType+" "+balance;
     }
