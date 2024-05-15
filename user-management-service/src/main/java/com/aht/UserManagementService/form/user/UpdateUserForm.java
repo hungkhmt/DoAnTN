@@ -31,4 +31,10 @@ public class UpdateUserForm {
     @NotBlank(message = "{User.createUser.fullname.NotBlank}")
     @Length(min = 6, max = 50, message = "{User.createUser.fullname.LenghtRange}")
     private String fullname;
+
+    private String dateOfBirth;
+
+    private String phoneNumber;
+
+    private String address;
 }

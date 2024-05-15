@@ -37,6 +37,15 @@ public class User {
     @Column(name = "fullname", length = 50, nullable = false)
     private String fullname;
 
+    @Column(name = "dateOfBirth", length = 50, nullable = false)
+    private String dateOfBirth;
+
+    @Column(name = "phoneNumber", length = 20, nullable = false)
+    private String phoneNumber;
+
+    @Column(name = "address", length = 100, nullable = false)
+    private String address;
+
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
     private Date created_at;

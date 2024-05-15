@@ -52,7 +52,15 @@ public class UserService implements IUserService{
     public void createUser(CreateUserForm form) {
         Set<Role> rolesToAdd = new HashSet<>();
         Role role = roleRepository.findByRoleName(Role.RoleName.USER);
-        rolesToAdd.add(role);
+        Role role1 = roleRepository.findByRoleName(Role.RoleName.ADMIN);
+        if(role != null) {
+            rolesToAdd.add(role);
+        } else if(role1 == null){
+            Role role2 = new Role(0, Role.RoleName.USER);
+            roleRepository.save(role2);
+            rolesToAdd.add(role1);
+        }
+
 
         User user = userFormToUser(form);
         user.setCreated_at(new Date());
@@ -83,6 +91,9 @@ public class UserService implements IUserService{
                 existingUser.setUsername(newUser.getUsername());
                 existingUser.setEmail(newUser.getEmail());
                 existingUser.setFullname(newUser.getFullname());
+                existingUser.setAddress(newUser.getAddress());
+                existingUser.setDateOfBirth(newUser.getDateOfBirth());
+                existingUser.setPhoneNumber(newUser.getPhoneNumber());
                 return userRepository.save(existingUser);
             }
         }
@@ -99,6 +110,9 @@ public class UserService implements IUserService{
                 existingUser.setEmail(newUser.getEmail());
                 existingUser.setFullname(newUser.getFullname());
                 existingUser.setPassword(newUser.getPassword());
+                existingUser.setAddress(newUser.getAddress());
+                existingUser.setDateOfBirth(newUser.getDateOfBirth());
+                existingUser.setPhoneNumber(newUser.getPhoneNumber());
                 existingUser.setRoles(newUser.getRoles());
                 return userRepository.save(existingUser);
             }
@@ -173,6 +187,9 @@ public class UserService implements IUserService{
         user.setPassword(form.getPassword());
         user.setEmail(form.getEmail());
         user.setFullname(form.getFullname());
+        user.setAddress(form.getAddress());
+        user.setPhoneNumber(form.getPhoneNumber());
+        user.setDateOfBirth(form.getDateOfBirth());
         user.setRoles(form.getRoles());
 
         return user;
@@ -184,6 +201,9 @@ public class UserService implements IUserService{
         user.setPassword(form.getPassword());
         user.setEmail(form.getEmail());
         user.setFullname(form.getFullname());
+        user.setAddress(form.getAddress());
+        user.setPhoneNumber(form.getPhoneNumber());
+        user.setDateOfBirth(form.getDateOfBirth());
         return user;
     }
 }

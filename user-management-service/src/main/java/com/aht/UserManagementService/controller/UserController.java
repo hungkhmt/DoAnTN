@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/user")
 @Validated
+@CrossOrigin("*")
 public class UserController {
     @Autowired
     IUserService userService;
@@ -100,6 +101,9 @@ public class UserController {
         userDTO.setPassword(user.getPassword());
         userDTO.setEmail(user.getEmail());
         userDTO.setFullname(user.getFullname());
+        userDTO.setDateOfBirth(user.getDateOfBirth());
+        userDTO.setPhoneNumber(user.getPhoneNumber());
+        userDTO.setAddress(user.getAddress());
         userDTO.setCreated_at(user.getCreated_at());
 
         return userDTO;
