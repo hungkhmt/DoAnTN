@@ -1,6 +1,7 @@
 package org.example.transactionservice.kafka;
 
 import lombok.AllArgsConstructor;
+import org.example.transactionservice.dto.transaction.MessageUpdateAccount;
 import org.example.transactionservice.service.IService.IBankAccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,4 +25,7 @@ public class EnableAccountConsumer {
         LOGGER.info(String.format("Event message received => enable_account %s", message));
         accountService.enableAccount(Long.parseLong(message));
     }
+
+
+
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class MessageTransaction {
+public class MessageUpdateBalanceTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class MessageTransaction {
 
     private Long amount;
     private Boolean status;
-    public MessageTransaction(Long accountId, Long amount){
+    public MessageUpdateBalanceTransaction(Long accountId, Long amount){
       this.accountId=accountId;
         this.amount=amount;
     }

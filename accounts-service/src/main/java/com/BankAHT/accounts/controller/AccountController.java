@@ -1,6 +1,7 @@
 package com.BankAHT.accounts.controller;
 
 import com.BankAHT.accounts.dto.AccountDto;
+import com.BankAHT.accounts.dto.MessageUpdateAccount;
 import com.BankAHT.accounts.service.IAccountService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -48,6 +49,10 @@ public class AccountController {
                                                @Max(value = 9999999999L, message = "AccountNumber không được vượt quá 10 chữ số")
                                                Long accountId){
         accountService.deleteAccount(accountId);
+        MessageUpdateAccount messageUpdateAccount= new MessageUpdateAccount();
+        messageUpdateAccount.setAccountId(accountId);
+        messageUpdateAccount.setEnable(false);
+        accountService.producerMessageUpdateAccountTransaction(messageUpdateAccount);
         return ResponseEntity.status(HttpStatus.OK).body("Delete Success !");
     }
 

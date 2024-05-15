@@ -1,7 +1,7 @@
 package org.example.transactionservice.service;
 
 import jakarta.transaction.Transactional;
-import org.example.transactionservice.dto.transaction.MessageTransaction;
+import org.example.transactionservice.dto.transaction.MessageUpdateBalanceTransaction;
 import org.example.transactionservice.repository.MessageTransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +27,8 @@ public class PollingService {
     @Transactional
     @Scheduled(fixedDelay = 1000)
     public void producerMessageTransaction(){
-        List<MessageTransaction> listMessage= messageTransactionRepository.findByStatus(false);
-        for(MessageTransaction messageTransaction: listMessage){
+        List<MessageUpdateBalanceTransaction> listMessage= messageTransactionRepository.findByStatus(false);
+        for(MessageUpdateBalanceTransaction messageTransaction: listMessage){
             logger.info("Sending message " + messageTransaction);
 //            CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("balance_updates",messageTransaction);
             CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("balance_updates",messageTransaction);
