@@ -105,6 +105,9 @@ public class AccountServiceImlp implements IAccountService {
     @Transactional
     public void producerMessageUpdateAccountTransaction(MessageUpdateAccount messageUpdateAccount){
             CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("account_updates",messageUpdateAccount);
-        }
+    }
 
+    public Long getUserIdByAccountId(Long accountId) {
+        return accountRepository.findCustomerIdByAccountId(accountId);
+    }
 }

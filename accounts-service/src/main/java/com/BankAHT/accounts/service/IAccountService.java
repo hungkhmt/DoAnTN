@@ -11,4 +11,5 @@ public interface IAccountService {
     boolean deleteAccount(Long accountNumber);
     void enableAccount(Long accountNumber);
     void producerMessageUpdateAccountTransaction(MessageUpdateAccount messageUpdateAccount);
+    public Long getUserIdByAccountId(Long accountId);
 }
