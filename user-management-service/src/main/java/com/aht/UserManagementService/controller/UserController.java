@@ -9,6 +9,7 @@ import com.aht.UserManagementService.form.user.UpdateUserForm;
 import com.aht.UserManagementService.form.user.UpdateUserPasswordForm;
 import com.aht.UserManagementService.service.IUserService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("api/user")
 @Validated
 @CrossOrigin("*")
+@Slf4j
 public class UserController {
     @Autowired
     IUserService userService;

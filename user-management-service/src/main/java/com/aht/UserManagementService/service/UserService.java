@@ -8,6 +8,8 @@ import com.aht.UserManagementService.repository.IRoleRepository;
 import com.aht.UserManagementService.repository.IUserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -19,6 +21,8 @@ public class UserService implements IUserService{
 
     @Autowired
     IRoleRepository roleRepository;
+
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
     public void createUserFromAdmin(CreateUserForAdminForm form) {
         Set<Role> roles =  form.getRoles();
@@ -46,6 +50,8 @@ public class UserService implements IUserService{
 
         user.setCreated_at(new Date());
 
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
+
         userRepository.save(user);
     }
 
@@ -58,13 +64,14 @@ public class UserService implements IUserService{
         } else if(role1 == null){
             Role role2 = new Role(0, Role.RoleName.USER);
             roleRepository.save(role2);
-            rolesToAdd.add(role1);
+            rolesToAdd.add(role2);
         }
 
 
         User user = userFormToUser(form);
         user.setCreated_at(new Date());
         user.setRoles(rolesToAdd);
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
 
         userRepository.save(user);
     }
@@ -135,7 +142,7 @@ public class UserService implements IUserService{
             User user = userRepository.findById(id).orElse(null);;
 
             if (user.getPassword().equals(form.getOldPassword())) {
-                user.setPassword(form.getNewPassword());
+                user.setPassword(passwordEncoder.encode(form.getNewPassword()));
                 return userRepository.save(user);
             }
         }

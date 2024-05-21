@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/api/v1/account")
 @Validated
+@CrossOrigin("*")
 public class AccountController {
 
     @Autowired
@@ -39,8 +40,15 @@ public class AccountController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createAccount(@RequestBody AccountDto accountDto){
-        accountService.createAccount(accountDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(accountDto);
+        Long userId = accountDto.getCustomerId();
+        String url = "http://localhost:8081/api/user/" + userId;
+        UserDTO response = restTemplate.getForObject(url, UserDTO.class);
+        if(response != null) {
+            accountService.createAccount(accountDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(accountDto);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(accountDto);
+        }
     }
 
     @PutMapping("/update")
