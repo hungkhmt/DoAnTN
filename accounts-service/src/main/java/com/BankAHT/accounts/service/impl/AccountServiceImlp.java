@@ -51,9 +51,14 @@ public class AccountServiceImlp implements IAccountService {
     @Transactional
     @Override
     public void createAccount(AccountDto accountDto) {
+        // tạo tài khoan thi account se co 50k
+        accountDto.setBalance(50_000L);
+
+
         Accounts accounts= AccountMapper.AccountDtoToAccount(accountDto);
         accounts.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         accounts.setCreatedBy("PTD-PTIT");
+        accounts.setBalance(50_000L);
         accounts.setEnable(true);
         accountRepository.save(accounts);
         kafkaTemplate.send("create_account",accountDto.toString());
