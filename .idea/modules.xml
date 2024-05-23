@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/ApiGateway/ApiGateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-management-service/UserManagementService.iml" filepath="$PROJECT_DIR$/user-management-service/UserManagementService.iml" />
       <module fileurl="file://$PROJECT_DIR$/accounts-service/accounts-service.iml" filepath="$PROJECT_DIR$/accounts-service/accounts-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/security-risk-management-service/security-risk-management-service.iml" filepath="$PROJECT_DIR$/security-risk-management-service/security-risk-management-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discovery-server/discovery-server.iml" filepath="$PROJECT_DIR$/discovery-server/discovery-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/transaction-service/transaction-service.iml" filepath="$PROJECT_DIR$/transaction-service/transaction-service.iml" />
     </modules>
   </component>

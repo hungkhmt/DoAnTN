@@ -17,6 +17,9 @@ spring:
       hibernate:
         jdbc.time_zone: UTC
         format_sql: true
+  cloud:
+    inetutils:
+      timeout-seconds: 10
 
 logging:
   level:
@@ -30,5 +33,12 @@ logging:
 
 jwt:
   signerKey: "QX4Ff8PzmCqUfjIAkP2wh7l5+ezHZeSGc6rynT9AnSU52us/8hLf1Qs5aydhr7Si"
-  valid-duration: 5 #in seconds
-  refreshable-duration: 120 #in seconds
+  valid-duration: 600 #in seconds
+  refreshable-duration: 1000000 #in seconds
+
+app:
+  eureka-server: localhost
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
