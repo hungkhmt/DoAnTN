@@ -10,5 +10,13 @@ spring:
         - id: user_service
           uri: http://localhost:8081
           predicates:
-            - Path=/api/auth/**
-            - Path=/api/user/**
+            - Path=/api/**
+    inetutils:
+      timeout-seconds: 10
+
+app:
+  eureka-server: localhost
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
