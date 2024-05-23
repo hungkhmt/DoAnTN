@@ -21,6 +21,7 @@ public class AccountMapper {
         accountDto.setAccountId(accounts.getAccountId());
         accountDto.setBalance(accounts.getBalance());
         accountDto.setCreatedAt(accounts.getCreatedAt());
+        accountDto.setAccountStatus(accounts.getStatus());
         return accountDto;
     }
 }

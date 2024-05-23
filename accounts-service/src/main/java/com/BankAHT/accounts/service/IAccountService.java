@@ -12,4 +12,5 @@ public interface IAccountService {
     void enableAccount(Long accountNumber);
     void producerMessageUpdateAccountTransaction(MessageUpdateAccount messageUpdateAccount);
     public Long getUserIdByAccountId(Long accountId);
+
 }

@@ -85,4 +85,10 @@ public class AccountController {
         return response;
     }
 
+//    @PutMapping("/activeAccount")
+//    public ResponseEntity<?> enableAccount(@RequestBody AccountDto accountDto){
+//        accountService.activeAccount(accountDto.getAccountId());
+//        return ResponseEntity.status(HttpStatus.OK).body(accountDto);
+//    }
+
 }
