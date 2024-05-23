@@ -1,8 +1,6 @@
 package com.BankAHT.accounts.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +25,8 @@ public class Accounts extends BaseEntity{
     @Column(name = "balance")
     private Long Balance;
 
-    @Column(name="enable")
-    private Boolean enable;
 
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
 }

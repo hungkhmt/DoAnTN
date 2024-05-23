@@ -27,7 +27,9 @@ public class BankAccount {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    private Boolean enable;
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
 
 }
 

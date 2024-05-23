@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import org.example.transactionservice.dto.transaction.MessageUpdateBalanceTransaction;
 import org.example.transactionservice.exception.AccountIsNotValidException;
 import org.example.transactionservice.exception.ResourceNoFoundException;
+import org.example.transactionservice.model.AccountStatus;
 import org.example.transactionservice.model.BankAccount;
 import org.example.transactionservice.repository.BankAccountRepository;
 import org.example.transactionservice.repository.MessageTransactionRepository;
@@ -61,14 +62,14 @@ public class BankAccountService implements IBankAccountService {
         accountSave.setAccountType(account.getAccountType());
         accountSave.setUserId(account.getUserId());
         accountSave.setBalance(account.getBalance());
-        accountSave.setEnable(true);
+        accountSave.setStatus(AccountStatus.PENDING);
         bankAccountRepository.save(accountSave);
     }
 
     @Override
     public boolean deleteAccount(Long accountNumber) {
         BankAccount accounts= bankAccountRepository.findById(accountNumber).orElseThrow(()-> new ResourceNoFoundException("Accouts",accountNumber.toString(),"AccoutsNumber"));
-        accounts.setEnable(false);
+        accounts.setStatus(AccountStatus.INACTIVE);
         bankAccountRepository.save(accounts);
         return true;
     }
@@ -76,7 +77,7 @@ public class BankAccountService implements IBankAccountService {
     @Override
     public void enableAccount(Long accountNumber) {
         BankAccount accounts= bankAccountRepository.findById(accountNumber).orElseThrow(()-> new ResourceNoFoundException("Accouts",accountNumber.toString(),"AccoutsNumber"));
-        accounts.setEnable(true);
+        accounts.setStatus(AccountStatus.ACTIVE);
         bankAccountRepository.save(accounts);
     }
 

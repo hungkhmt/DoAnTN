@@ -2,6 +2,7 @@ package com.BankAHT.accounts.service.impl;
 
 import com.BankAHT.accounts.dto.AccountDto;
 import com.BankAHT.accounts.dto.MessageUpdateAccount;
+import com.BankAHT.accounts.entity.AccountStatus;
 import com.BankAHT.accounts.entity.Accounts;
 import com.BankAHT.accounts.exception.ResourceNoFoundException;
 import com.BankAHT.accounts.mapper.AccountMapper;
@@ -58,8 +59,8 @@ public class AccountServiceImlp implements IAccountService {
         Accounts accounts= AccountMapper.AccountDtoToAccount(accountDto);
         accounts.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         accounts.setCreatedBy("PTD-PTIT");
+        accounts.setStatus(AccountStatus.PENDING);
         accounts.setBalance(50_000L);
-        accounts.setEnable(true);
         accountRepository.save(accounts);
         kafkaTemplate.send("create_account",accountDto.toString());
     }
@@ -78,7 +79,7 @@ public class AccountServiceImlp implements IAccountService {
         Accounts accounts= AccountMapper.AccountDtoToAccount(accountDto);
         accounts.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         accounts.setUpdatedBy("PTD-PTIT");
-        accounts.setEnable(oldAccouts.getEnable());
+        accounts.setStatus(oldAccouts.getStatus());
         accountRepository.save(accounts);
         return false;
     }
@@ -87,7 +88,9 @@ public class AccountServiceImlp implements IAccountService {
     @Override
     public boolean deleteAccount(Long accountNumber) {
       Accounts accounts= accountRepository.findById(accountNumber).orElseThrow(()-> new ResourceNoFoundException("Accouts",accountNumber.toString(),"AccoutsNumber"));
-      accounts.setEnable(false);
+      accounts.setStatus(AccountStatus.INACTIVE);
+        accounts.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        accounts.setUpdatedBy("PTD-PTIT");
       accountRepository.save(accounts);
       MessageUpdateAccount messageUpdateAccount= new MessageUpdateAccount();
       messageUpdateAccount.setAccountId(accountNumber);
@@ -99,7 +102,9 @@ public class AccountServiceImlp implements IAccountService {
     @Override
     public void enableAccount(Long accountNumber) {
         Accounts accounts= accountRepository.findById(accountNumber).orElseThrow(()-> new ResourceNoFoundException("Accouts",accountNumber.toString(),"AccoutsNumber"));
-        accounts.setEnable(true);
+        accounts.setStatus(AccountStatus.ACTIVE);
+        accounts.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        accounts.setUpdatedBy("PTD-PTIT");
         accountRepository.save(accounts);
         kafkaTemplate.send("enable_account",accountNumber);
     }
@@ -115,4 +120,7 @@ public class AccountServiceImlp implements IAccountService {
     public Long getUserIdByAccountId(Long accountId) {
         return accountRepository.findCustomerIdByAccountId(accountId);
     }
+
+
+
 }
