@@ -28,7 +28,7 @@ public class UserController {
     IUserService userService;
 
 
-    @PostMapping()
+    @PostMapping("/registration")
     public ResponseEntity<String> createUser(@RequestBody @Valid CreateUserForm form) {
         userService.createUser(form);
         return ResponseEntity.ok("Create Successfully!");

@@ -1,4 +1,4 @@
-package org.example.transactionservice.config.securityconfig;
+package com.BankAHT.accounts.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,9 +23,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers(HttpMethod.POST, "/api/v1/transaction/withdraw").hasAuthority("SCOPE_ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/transaction/deposit").hasAuthority("SCOPE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/transaction/listAllTransaction").hasAuthority("SCOPE_ADMIN")
+                request.requestMatchers(HttpMethod.POST, "/api/v1/account/ad/**").hasAuthority("SCOPE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/account/ad/**").hasAuthority("SCOPE_ADMIN")
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 ->

@@ -1,12 +1,7 @@
 package com.aht.UserManagementService.entity;
 
-import com.aht.UserManagementService.Validation.User.EmailNotExists;
-import com.aht.UserManagementService.Validation.User.UsernameNotExists;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 import java.util.Set;
@@ -49,6 +44,9 @@ public class User {
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
     private Date created_at;
+
+    @Column(name = "status", nullable = false)
+    private UserStatus status;
 
     @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "userId"),

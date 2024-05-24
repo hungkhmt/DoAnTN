@@ -5,9 +5,9 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://localhost:3306/user_bank_aht?createDatabaseIfNotExists=true
+    url: jdbc:mysql://localhost:3306/user_management_service?createDatabaseIfNotExists=true
     username: root
-    password: 123456
+    password: hung1218
   jpa:
     hibernate:
       ddl-auto: update

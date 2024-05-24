@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/v1/account")
 @Validated
@@ -35,6 +37,11 @@ public class AccountController {
         AccountDto accountDto= accountService.fetchAccount(accountId);
 
         return ResponseEntity.status(HttpStatus.OK).body(accountDto);
+    }
+
+    @GetMapping("/ad")
+    public List<AccountDto> getAllAccount() {
+        return accountService.getAllAccount();
     }
 
 
@@ -58,7 +65,7 @@ public class AccountController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> updateAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
+    public ResponseEntity<?> deleteAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
                                                @Max(value = 9999999999L, message = "AccountNumber không được vượt quá 10 chữ số")
                                                Long accountId){
         accountService.deleteAccount(accountId);
@@ -69,7 +76,7 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body("Delete Success !");
     }
 
-    @PostMapping("/enable")
+    @PostMapping("/ad/enable")
     public ResponseEntity<?> enableAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
                                            @Max(value = 9999999999L, message = "AccountNumber không được vượt quá 10 chữ số")
                                            Long accountId){

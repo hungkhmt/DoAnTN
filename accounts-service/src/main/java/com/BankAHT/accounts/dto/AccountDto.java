@@ -3,11 +3,13 @@ package com.BankAHT.accounts.dto;
 import com.BankAHT.accounts.entity.AccountStatus;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Timestamp;
 
 @Data
+@Builder
 public class AccountDto {
 
     @NotEmpty(message = "CustomerId không thể là null hoặc empty")

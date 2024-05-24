@@ -3,6 +3,7 @@ package com.aht.UserManagementService.service;
 import com.aht.UserManagementService.dto.UserDTO;
 import com.aht.UserManagementService.entity.Role;
 import com.aht.UserManagementService.entity.User;
+import com.aht.UserManagementService.entity.UserStatus;
 import com.aht.UserManagementService.form.user.*;
 import com.aht.UserManagementService.repository.IRoleRepository;
 import com.aht.UserManagementService.repository.IUserRepository;
@@ -131,9 +132,9 @@ public class UserService implements IUserService{
     public void deleteUser(Integer userId) {
         // Xóa tất cả các liên kết giữa người dùng và vai trò của họ trong bảng user_role
         userRepository.findById(userId).ifPresent(user -> user.getRoles().clear());
-
-        // Xóa người dùng
-        userRepository.deleteById(userId);
+        User user = userRepository.findById(userId).get();
+        user.setStatus(UserStatus.INACTIVE);
+        userRepository.save(user);
     }
 
     @Transactional

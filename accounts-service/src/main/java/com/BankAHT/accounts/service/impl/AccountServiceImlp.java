@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -73,6 +74,16 @@ public class AccountServiceImlp implements IAccountService {
     }
 
     @Override
+    public List<AccountDto> getAllAccount() {
+        List<Accounts> accounts = accountRepository.findAll();
+        List<AccountDto> accountDtos = new ArrayList<>();
+        for(Accounts accounts1: accounts) {
+            accountDtos.add(accountToAccountDTO(accounts1));
+        }
+        return accountDtos;
+    }
+
+    @Override
     public boolean updateAccount(AccountDto accountDto) {
 
         Accounts oldAccouts= accountRepository.findById(accountDto.getAccountId()).orElseThrow(()-> new ResourceNoFoundException("Accouts",accountDto.getAccountId().toString(),"AccoutsNumber"));
@@ -121,6 +132,15 @@ public class AccountServiceImlp implements IAccountService {
         return accountRepository.findCustomerIdByAccountId(accountId);
     }
 
-
+    private AccountDto accountToAccountDTO(Accounts accounts) {
+        return AccountDto.builder()
+                .accountId(accounts.getAccountId())
+                .customerId(accounts.getCustomerId())
+                .accountType(accounts.getAccountType())
+                .accountStatus(accounts.getStatus())
+                .balance(accounts.getBalance())
+                .createdAt(accounts.getCreatedAt())
+                .build();
+    }
 
 }
