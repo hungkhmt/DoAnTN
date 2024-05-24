@@ -1,0 +1,29 @@
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    padding: 0 16px;
+  }
+
+  .nav-bar span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+    font-weight: 500;
+    font-size: large;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .mat-elevation-z8 {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .admin_dashboard {
+    color: white;
+    text-decoration: none;
+  }

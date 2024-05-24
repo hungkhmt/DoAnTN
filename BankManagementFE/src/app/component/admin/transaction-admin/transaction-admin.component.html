@@ -1,0 +1,38 @@
+<!-- Transfer Page Component -->
+<div class="transfer-container">
+  <div class="transfer-body">
+    <mat-card class="account-info">
+      <div class="account-number">0846298327 - NGUYEN THE HUNG</div>
+      <div class="balance">2,418,383 VND</div>
+    </mat-card>
+  
+    <form class="transfer-form" [formGroup] = "tranferForm">
+      <mat-form-field subscriptSizing="dynamic" appearance="fill">
+        <mat-label>Tài khoản nguồn</mat-label>
+        <input matInput placeholder="Nhập số tài khoản" formControlName="sourceAccountId">
+      </mat-form-field>
+  
+      <mat-form-field subscriptSizing="dynamic" appearance="fill">
+        <mat-label>Tài khoản đích</mat-label>
+        <input matInput placeholder="Nhập số tài khoản" formControlName="destinationAccountId">
+      </mat-form-field>
+  
+      <mat-form-field subscriptSizing="dynamic" appearance="fill">
+        <mat-label>Tên tài khoản</mat-label>
+        <input matInput placeholder="Nhập tên tài khoản">
+      </mat-form-field>
+  
+      <mat-form-field subscriptSizing="dynamic" appearance="fill">
+        <mat-label>Số tiền</mat-label>
+        <input matInput type="number" placeholder="Nhập số tiền" formControlName="amount">
+      </mat-form-field>
+  
+      <mat-form-field subscriptSizing="dynamic" appearance="fill">
+        <mat-label>Nội dung chuyển tiền</mat-label>
+        <textarea matInput placeholder="Nội dung chuyển tiền" formControlName="description"></textarea>
+      </mat-form-field>
+  
+      <button mat-raised-button color="warn" (click)="onFormSubmit()">Tiếp tục</button>
+    </form>
+  </div>
+</div>

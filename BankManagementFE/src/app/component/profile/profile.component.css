@@ -1,0 +1,26 @@
+/* Profile Card Styles */
+.profile-card {
+    max-width: 300px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  mat-card {
+    padding: 10px;
+  }
+  
+  mat-card-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  mat-card-content p {
+    margin: 5px 0;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+  }
+  

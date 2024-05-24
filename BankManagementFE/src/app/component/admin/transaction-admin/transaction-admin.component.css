@@ -1,0 +1,68 @@
+/* Transfer Page Styles */
+.transfer-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  height: calc(100vh - 97px);
+  width: calc(100% - 35px);
+}
+
+.transfer-body {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Viền bo tròn */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+}
+  
+  .account-info {
+    margin-bottom: 50px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 13px; /* Viền bo tròn */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đổ nhẹ */
+  }
+  
+  /* .account-number {
+    font-weight: bold;
+  } */
+  
+  .balance {
+    margin-top: 10px;
+    font-size: 1.8em;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .set-default {
+    margin-top: 10px;
+    text-transform: none;
+  }
+  
+  .transfer-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  button {
+    margin-top: 10px;
+    background-color: sandybrown;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .transfer-container {
+      padding: 10px;
+    }
+  }

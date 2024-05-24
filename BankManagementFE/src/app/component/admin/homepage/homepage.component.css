@@ -1,0 +1,108 @@
+.container {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1e;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    height: calc(100vh - 97px);
+    width: calc(100% - 35px);
+}
+
+.card, .transactions {
+    background-color: #2c2c2e;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card {
+    margin-right: 20px;
+    width: 30%;
+}
+
+.transactions {
+    margin-left: 20px;
+    width: 70%;
+}
+
+.card-header {
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
+}
+
+.card-info {
+    background: linear-gradient(135deg, #6e00ff, #ff00c3);
+    border-radius: 13px;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-info p {
+    margin: 5px 0;
+}
+
+.card-number {
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.card-actions .transfer-funds, .card-actions .add-card {
+    border: none;
+    border-radius: 7px;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 50%;
+}
+
+.card-actions .transfer-funds:hover, .card-actions .add-card:hover {
+    background-color: #ff1ac6;
+}
+
+.card-actions .transfer-funds {
+    margin-right: 5px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #c1f04bea, #e0ea1a);
+}
+
+.card-actions .add-card {
+    margin-left: 5px;
+    background-color: powderblue;
+}
+
+.transactions .transaction-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.transactions .transaction {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #3c3c3e;
+    border-radius: 5px;
+}
+
+.spend-analysis .spend-chart {
+    position: relative;
+    height: 200px;
+}
+
+.spend-analysis h2 {
+    margin-bottom: 20px;
+}

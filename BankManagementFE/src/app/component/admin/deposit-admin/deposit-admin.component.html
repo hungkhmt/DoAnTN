@@ -1,0 +1,39 @@
+<!-- Deposit Page Component -->
+<div class="deposit-container">
+  <div class="deposit-body">
+    <h2>Deposit</h2>
+    <form>
+      <mat-form-field appearance="fill">
+        <mat-label>Account number</mat-label>
+        <mat-select>
+          <mat-option value="1">123456789</mat-option>
+          <mat-option value="2">987654321</mat-option>
+          <!-- Thêm các số tài khoản khác tại đây -->
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter name" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Deposit amount</mat-label>
+        <input matInput type="number" placeholder="Enter amount" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Account type</mat-label>
+        <mat-select>
+          <mat-option value="checking">Checking</mat-option>
+          <mat-option value="savings">Saving</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <div class="footer-button">
+        <button>Send</button>
+      </div>
+      
+    </form>
+  </div>
+</div>
