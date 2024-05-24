@@ -14,9 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${jwt.signerKey}")
-    private String SIGNER_KEY;
-
     @Autowired
     CustomJWTDecoder customJWTDecoder;
 

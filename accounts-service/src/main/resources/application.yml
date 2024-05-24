@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: "accounts"
+    name: account-service
     logging:
       level:
         root: DEBUG

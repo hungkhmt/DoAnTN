@@ -30,12 +30,14 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping("/transfer")
-    public ResponseEntity<?> transfer(@RequestBody TransferDto transferDto) {
-        try {
-            return ResponseEntity.ok(transactionService.transfer(transferDto));
-        } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
-        }
+    public ResponseEntity<?> transfer(@RequestBody TransferDto transferDto) throws Exception {
+//        try {
+//            return ResponseEntity.ok(transactionService.transfer(transferDto));
+//        } catch (Exception exception) {
+//            log.info("FAIL");
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
+//        }
+        return ResponseEntity.ok(transactionService.transfer(transferDto));
     }
 
     @PostMapping("/withdraw")

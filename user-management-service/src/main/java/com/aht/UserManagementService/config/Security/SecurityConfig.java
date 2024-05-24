@@ -23,11 +23,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers(HttpMethod.POST, "api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "api/user/registration").permitAll()
-                        .requestMatchers(HttpMethod.GET, "api/user/ad/**").hasAuthority("SCOPE_ADMIN")
-                        .requestMatchers(HttpMethod.POST, "api/user/ad/**").hasAuthority("SCOPE_ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "api/user/ad/**").hasAuthority("SCOPE_ADMIN")
+                request.requestMatchers(HttpMethod.POST, "api/v1/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "api/v1/user/registration").permitAll()
+                        .requestMatchers(HttpMethod.GET, "api/v1/user/ad/**").hasAuthority("SCOPE_ADMIN")
+                        .requestMatchers(HttpMethod.POST, "api/v1/user/ad/**").hasAuthority("SCOPE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "api/v1/user/ad/**").hasAuthority("SCOPE_ADMIN")
                         .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 ->

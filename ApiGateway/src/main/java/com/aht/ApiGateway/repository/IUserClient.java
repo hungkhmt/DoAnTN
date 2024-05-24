@@ -9,6 +9,6 @@ import org.springframework.web.service.annotation.PostExchange;
 import reactor.core.publisher.Mono;
 
 public interface IUserClient {
-    @PostExchange(url = "api/auth/introspect", contentType = MediaType.APPLICATION_JSON_VALUE)
+    @PostExchange(url = "api/v1/auth/introspect", contentType = MediaType.APPLICATION_JSON_VALUE)
     Mono<IntrospectResponse> introspect(@RequestBody IntrospectRequest request);
 }
