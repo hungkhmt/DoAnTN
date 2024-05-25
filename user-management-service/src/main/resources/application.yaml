@@ -5,7 +5,8 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:mysql://localhost:3306/user_management_service?createDatabaseIfNotExists=true
+    url: jdbc:mysql://localhost:3306/user_bank?createDatabaseIfNotExists=true
+    driverClassName: "com.mysql.cj.jdbc.Driver"
     username: root
     password: hung1218
   jpa:
@@ -21,15 +22,15 @@ spring:
     inetutils:
       timeout-seconds: 10
 
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql:
-              BasicBinder: TRACE
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql:
+#              BasicBinder: TRACE
 
 jwt:
   signerKey: "QX4Ff8PzmCqUfjIAkP2wh7l5+ezHZeSGc6rynT9AnSU52us/8hLf1Qs5aydhr7Si"

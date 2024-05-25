@@ -4,18 +4,23 @@ import com.aht.UserManagementService.dto.UserDTO;
 import com.aht.UserManagementService.entity.Role;
 import com.aht.UserManagementService.entity.User;
 import com.aht.UserManagementService.entity.UserStatus;
+import com.aht.UserManagementService.exception.AppException;
+import com.aht.UserManagementService.exception.ErrorCode;
 import com.aht.UserManagementService.form.user.*;
 import com.aht.UserManagementService.repository.IRoleRepository;
 import com.aht.UserManagementService.repository.IUserRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.logging.Logger;
 
 @Service
+@Slf4j
 public class UserService implements IUserService{
     @Autowired
     IUserRepository userRepository;
@@ -50,7 +55,7 @@ public class UserService implements IUserService{
         User user = userFormToUserAd(form);
 
         user.setCreated_at(new Date());
-
+        user.setStatus(UserStatus.ACTIVE);
         user.setPassword(passwordEncoder.encode(form.getPassword()));
 
         userRepository.save(user);
@@ -59,18 +64,14 @@ public class UserService implements IUserService{
     public void createUser(CreateUserForm form) {
         Set<Role> rolesToAdd = new HashSet<>();
         Role role = roleRepository.findByRoleName(Role.RoleName.USER);
-        Role role1 = roleRepository.findByRoleName(Role.RoleName.ADMIN);
         if(role != null) {
             rolesToAdd.add(role);
-        } else if(role1 == null){
-            Role role2 = new Role(0, Role.RoleName.USER);
-            roleRepository.save(role2);
-            rolesToAdd.add(role2);
         }
 
 
         User user = userFormToUser(form);
         user.setCreated_at(new Date());
+        user.setStatus(UserStatus.ACTIVE);
         user.setRoles(rolesToAdd);
         user.setPassword(passwordEncoder.encode(form.getPassword()));
 
@@ -139,17 +140,20 @@ public class UserService implements IUserService{
 
     @Transactional
     public User updatePassword(Integer id, UpdateUserPasswordForm form) {
-        if(id != null) {
-            User user = userRepository.findById(id).orElse(null);;
-
-            if (user.getPassword().equals(form.getOldPassword())) {
-                user.setPassword(passwordEncoder.encode(form.getNewPassword()));
-                return userRepository.save(user);
-            }
+        if (id == null) {
+            throw new AppException(ErrorCode.USER_NOT_EXISTED);
         }
 
-        return null;
+        User user = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+        if (passwordEncoder.matches(form.getOldPassword(), user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(form.getNewPassword()));
+            return userRepository.save(user);
+        } else {
+            throw new AppException(ErrorCode.INCORRECT_PASSWORD);
+        }
     }
+
 
     @Transactional
     public void revokeRoles(Integer userId) {

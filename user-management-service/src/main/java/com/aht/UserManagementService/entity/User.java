@@ -35,7 +35,7 @@ public class User {
     @Column(name = "dateOfBirth", length = 50, nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "phoneNumber", length = 20, nullable = false)
+    @Column(name = "phoneNumber", length = 20, nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(name = "address", length = 100, nullable = false)
@@ -46,9 +46,10 @@ public class User {
     private Date created_at;
 
     @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
 
-    @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "userId"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId"))
     private Set<Role> roles;
