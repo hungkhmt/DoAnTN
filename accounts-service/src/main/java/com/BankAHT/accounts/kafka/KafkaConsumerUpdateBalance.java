@@ -54,20 +54,4 @@ public class KafkaConsumerUpdateBalance {
 
     }
 
-
-//    @KafkaListener(id="dltGroup",topics = "balance_updates.DLT")
-//    public void dltListen(MessageTransaction messageTransaction){
-//        LOGGER.info("Event message received => %s", messageTransaction);
-//        messageTransactionRepository.save(messageTransaction);
-//
-//            // Fetch account
-//            AccountDto account = accountService.fetchAccount(messageTransaction.getAccountId());
-//
-//            // Update balance
-//            Long newBalance = account.getBalance() + messageTransaction.getAmount();
-//            account.setBalance(newBalance);
-//            accountService.updateAccount(account);
-//    }
-
-
 }
