@@ -25,5 +25,11 @@ public class TransactionRepository {
         }
     }
 
+    @Test
+    public void findTransactionByCustomerId(){
+        List<Transaction> list= transactionRepository.findByUserId(1L);
+        System.out.println(list.size());
+    }
+
 
 }

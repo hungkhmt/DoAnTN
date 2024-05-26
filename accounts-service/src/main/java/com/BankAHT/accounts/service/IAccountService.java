@@ -9,6 +9,8 @@ public interface IAccountService {
     void createAccount(AccountDto accountDto);
     AccountDto fetchAccount(Long accountNumber);
     boolean updateAccount(AccountDto accountDto);
+
+    void updateBalance(Long idAccount,Long amount);
     public List<AccountDto> getAllAccount();
     boolean deleteAccount(Long accountNumber);
     void enableAccount(Long accountNumber);

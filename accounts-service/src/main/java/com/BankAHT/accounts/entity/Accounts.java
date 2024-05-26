@@ -25,6 +25,7 @@ public class Accounts extends BaseEntity{
     @Column(name = "balance")
     private Long Balance;
 
+    private Double maxTransactionAmount;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

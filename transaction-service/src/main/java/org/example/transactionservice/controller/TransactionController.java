@@ -68,9 +68,15 @@ public class TransactionController {
         return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> listAllTransactionById() {
-        List<Transaction> listTransaction= transactionService.findAll();
+    @GetMapping("/transaction-by-accountId/{id}")
+    public ResponseEntity<?> listAllTransactionByAccountId(@PathVariable("id") Long idAccount) {
+        List<Transaction> listTransaction= transactionService.findByIdAccounts(idAccount);
+        return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
+    }
+
+    @GetMapping("/transaction-by-customerId/{id}")
+    public ResponseEntity<?> listAllTransactionByCustomerId(@PathVariable("id") Long idCustomer) {
+        List<Transaction> listTransaction= transactionService.findByIdCustomer(idCustomer);
         return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
     }
 
