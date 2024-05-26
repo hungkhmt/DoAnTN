@@ -37,7 +37,6 @@ public class TransactionController {
             log.info("FAIL");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
         }
-//        return ResponseEntity.ok(transactionService.transfer(transferDto));
     }
 
     @PostMapping("/withdraw")
