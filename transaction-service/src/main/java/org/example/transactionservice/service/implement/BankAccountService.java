@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class BankAccountService implements IBankAccountService {
 
@@ -33,9 +35,9 @@ public class BankAccountService implements IBankAccountService {
 
     @Override
     public BankAccount getBankAccById(Long accountId) throws Exception {
-        BankAccount bankAccount = bankAccountRepository.findBankAccoutById(accountId);
-        if (bankAccount != null) {
-            return bankAccount;
+        Optional<BankAccount> bankAccount = bankAccountRepository.findBankAccoutById(accountId);
+        if (bankAccount.isPresent()) {
+            return bankAccount.get();
         }
         throw new AccountIsNotValidException("Account is not exist");
     }
@@ -62,7 +64,7 @@ public class BankAccountService implements IBankAccountService {
         accountSave.setAccountType(account.getAccountType());
         accountSave.setUserId(account.getUserId());
         accountSave.setBalance(account.getBalance());
-        accountSave.setStatus(AccountStatus.PENDING);
+        accountSave.setStatus(account.getStatus());
         bankAccountRepository.save(accountSave);
     }
 
