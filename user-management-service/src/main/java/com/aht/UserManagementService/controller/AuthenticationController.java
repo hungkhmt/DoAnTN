@@ -1,5 +1,6 @@
 package com.aht.UserManagementService.controller;
 
+import com.aht.UserManagementService.dto.ApiResponse;
 import com.aht.UserManagementService.dto.request.AuthenticationRequest;
 import com.aht.UserManagementService.dto.request.IntrospectRequest;
 import com.aht.UserManagementService.dto.response.AuthenticationResponse;
@@ -47,9 +48,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/logout")
-    ResponseEntity<String> logout(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
+    ApiResponse<Void> logout(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
         authenticationService.logout(request);
-        return ResponseEntity.status(HttpStatus.OK).body("Logout success");
+        return ApiResponse.<Void>builder().build();
     }
 
     @PostMapping("/refresh")
