@@ -62,6 +62,7 @@ public class AccountServiceImlp implements IAccountService {
         accounts.setCreatedBy("PTD-PTIT");
         accounts.setStatus(AccountStatus.PENDING);
         accounts.setBalance(50_000L);
+        accounts.setMaxTransactionAmount(2_000_000.0);
         accountRepository.save(accounts);
 //        kafkaTemplate.send("create_account",accountDto.toString());
     }
@@ -104,6 +105,15 @@ public class AccountServiceImlp implements IAccountService {
         accountRepository.save(accounts);
         return false;
     }
+
+    @Override
+    public void updateBalance(Long idAccount,Long amount) {
+        Accounts accounts= accountRepository.findById(idAccount).orElseThrow(()-> new ResourceNoFoundException("Accouts",idAccount.toString(),"AccoutsNumber"));
+//        accounts.setBalance(accounts.getBalance()+amount);
+//        accountRepository.save(accounts);
+        accountRepository.updateBalanceByAccountIdAndAmount(idAccount,amount);
+    }
+
 
     @Transactional
     @Override
