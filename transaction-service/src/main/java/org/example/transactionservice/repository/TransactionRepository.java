@@ -13,4 +13,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     @Query("SELECT tr FROM Transaction tr WHERE tr.sourceAccountId =:id OR tr.destinationAccountId =:id")
     List<Transaction> findByIdAccounts(Long id);
+
+    @Query("SELECT tr FROM Transaction tr JOIN BankAccount a ON tr.sourceAccountId = a.accountId OR tr.destinationAccountId = a.accountId WHERE a.userId =:userId ORDER BY tr.transactionId ASC")
+    List<Transaction> findByUserId(Long userId);
 }

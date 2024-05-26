@@ -119,10 +119,16 @@ public class TransactionService implements ITransactionService {
 
     @Override
     public List<Transaction> findByIdAccounts(Long id) {
-        List<Transaction> optionalTransaction= transactionRepository.findByIdAccounts(1926734002L);
+        List<Transaction> optionalTransaction= transactionRepository.findByIdAccounts(id);
 
         return optionalTransaction;
 
+    }
+
+    @Override
+    
+    public List<Transaction> findByIdCustomer(Long id) {
+        return transactionRepository.findByUserId(id);
     }
 
     public Page<Transaction> getByPage(int page, String sortBy, String sortType, String key){
