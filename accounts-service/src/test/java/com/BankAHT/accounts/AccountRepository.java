@@ -15,5 +15,10 @@ public class AccountRepository {
     @Autowired
     private com.BankAHT.accounts.repository.AccountRepository accountRepository;
 
+    @Test
+    public void testUpdateBalance(){
+        accountRepository.updateBalanceByAccountIdAndAmount(6666666666L,50000L);
+    }
+
 
 }

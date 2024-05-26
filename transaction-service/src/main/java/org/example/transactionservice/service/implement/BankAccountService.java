@@ -65,6 +65,7 @@ public class BankAccountService implements IBankAccountService {
         accountSave.setUserId(account.getUserId());
         accountSave.setBalance(account.getBalance());
         accountSave.setStatus(account.getStatus());
+        accountSave.setMaxTransactionAmount(2_000_000.0);
         bankAccountRepository.save(accountSave);
     }
 

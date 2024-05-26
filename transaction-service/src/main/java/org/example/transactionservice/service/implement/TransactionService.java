@@ -39,9 +39,12 @@ public class TransactionService implements ITransactionService {
         BankAccount destinationAcc = bankAccountService.getBankAccById(transferDto.getDestinationAccountId());
 
         // check if balace less than amount of money want to transfer
-//        if (sourceAcc.getBalance() < transferDto.getAmount() || sourceAcc.getBalance() < 0 || sourceAcc.getBalance()<50_000 || sourceAcc.getBalance()-transferDto.getAmount() < 50_000) {
-//            throw new InsufficientBalanceException("Insufficient balance to perform the transaction");
-//        }
+        if (sourceAcc.getBalance() < transferDto.getAmount() || sourceAcc.getBalance() < 0 || sourceAcc.getBalance()<50_000 || sourceAcc.getBalance()-transferDto.getAmount() < 50_000
+                || transferDto.getAmount() > sourceAcc.getMaxTransactionAmount()
+                || transferDto.getAmount() < 1000
+        ) {
+            throw new InsufficientBalanceException("Insufficient balance to perform the transaction or the amount exceeds the transaction limit or is below the minimum required");
+        }
 
         // create transaction
         Transaction transaction = new Transaction();

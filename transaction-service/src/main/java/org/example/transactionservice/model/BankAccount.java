@@ -21,6 +21,8 @@ public class BankAccount {
 
     private Double balance;
 
+    private Double maxTransactionAmount;
+
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
