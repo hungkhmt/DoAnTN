@@ -1,12 +1,7 @@
 package com.aht.UserManagementService.entity;
 
-import com.aht.UserManagementService.Validation.User.EmailNotExists;
-import com.aht.UserManagementService.Validation.User.UsernameNotExists;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 import java.util.Set;
@@ -40,7 +35,7 @@ public class User {
     @Column(name = "dateOfBirth", length = 50, nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "phoneNumber", length = 20, nullable = false)
+    @Column(name = "phoneNumber", length = 20, nullable = false, unique = true)
     private String phoneNumber;
 
     @Column(name = "address", length = 100, nullable = false)
@@ -50,7 +45,11 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date created_at;
 
-    @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
+    @ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "userId"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId"))
     private Set<Role> roles;

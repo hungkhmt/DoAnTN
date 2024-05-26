@@ -45,10 +45,4 @@ public class PollingService {
         });
     }
     }
-
-//    @Scheduled(fixedDelay = 5000)
-//    public void deleteMessageSendSuccess(){
-//        List<MessageTransaction> listMessage= messageTransactionRepository.findByStatus(true);
-//        messageTransactionRepository.deleteAllInBatch(listMessage);
-//    }
 }

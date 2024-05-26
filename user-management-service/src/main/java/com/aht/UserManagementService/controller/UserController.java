@@ -11,6 +11,7 @@ import com.aht.UserManagementService.service.IUserService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/v1/user")
 @Validated
 @CrossOrigin("*")
 @Slf4j
@@ -28,7 +29,7 @@ public class UserController {
     IUserService userService;
 
 
-    @PostMapping()
+    @PostMapping("/registration")
     public ResponseEntity<String> createUser(@RequestBody @Valid CreateUserForm form) {
         userService.createUser(form);
         return ResponseEntity.ok("Create Successfully!");
@@ -80,9 +81,9 @@ public class UserController {
     }
 
     @PutMapping("/password/{id}")
-    public User updateUserPassword(@PathVariable(name = "id") Integer id, @RequestBody @Valid UpdateUserPasswordForm form) {
-
-        return userService.updatePassword(id, form);
+    public ResponseEntity<?> updateUserPassword(@PathVariable(name = "id") Integer id, @RequestBody UpdateUserPasswordForm form) {
+        userService.updatePassword(id, form);
+        return ResponseEntity.status(HttpStatus.OK).body("Update password succesful");
     }
 
     @PostMapping("/ad/grant/{id}")

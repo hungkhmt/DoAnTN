@@ -1,0 +1,48 @@
+<main>
+    <div class="container">
+        <form action="" [formGroup]="loginForm">
+            <div class="modal-img_container">
+                <img src="../../assets/undraw_remotely_2j6y.png" alt="Login img" id="img_login">
+            </div>
+            <div class="modal-loginForm_container">
+                <div class="modal-loginForm_container login_header">
+                    <h1 style="font-size: 30px; color: #41E864;">Sign In</h1>
+                    <span id="login_header-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                </div>
+                <div class="modal-loginForm_container login_body">
+                    <div class="input_db">
+                        <label for="username" style="color: #41E864;">Username</label>
+                        <input type="text" placeholder="Username" id="username" name="username" formControlName="username" (input)="username.markAsDirty()">
+                        <small *ngIf="username.invalid && (username.dirty)">
+                            <div *ngIf="username.errors?.['required']" style="color: red;">User name is require</div>
+                        </small>
+                    </div>
+                    <div class="input_db">
+                        <label for="password" style="margin-top: 10px; color: #41E864;">Password</label>
+                        <input type="password" placeholder="Password" id="password" name="password" formControlName="password">
+                        <small *ngIf="password.invalid && (password.dirty)">
+                            <div *ngIf="password.errors?.['required']" style="color: red;">Password is require</div>                            
+                        </small>
+                    </div>
+                    <div id="login_service">
+                        <label> 
+                            <input type="checkbox" id="rememberMe">
+                            Remember me
+                        </label>
+                        <span id="forgotPsw">Forgot Password</span>
+                    </div>
+                </div>
+                <div class="modal-loginForm_container login_button">
+                    <p style="color: red;" id="nameErrorMessage" *ngIf="!isLogin">Username or password not correct</p>
+                    <button id="btn-login" type="submit">Log In</button>
+                </div>
+                <div class="modal-loginForm_container login_footer">    
+                    <p id="footer_content">- or login with -</p>
+                    <i class="fa-brands fa-facebook fa-2xl" id="fb"></i>
+                    <i class="fa-brands fa-google fa-2xl" id="gg"></i>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</main>

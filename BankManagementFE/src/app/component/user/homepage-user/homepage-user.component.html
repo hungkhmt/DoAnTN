@@ -1,0 +1,88 @@
+<div class="container">
+    <!-- Expense Statistics -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Virtual Card</h2>
+        </div>
+        <div class="card-body">
+            <div class="card-info">
+                <p>Home Account (GBP)</p>
+                <p class="card-number">**** **** **** 4567</p>
+                <p>Card Holder Name: Brett Smith</p>
+                <p>CVV: 789</p>
+                <p>Expiry Date: 05/2021</p>
+                <p>Spend Limit: €5000</p>
+            </div>
+            <div class="card-actions">
+                <button class="transfer-funds">Transfer Funds</button>
+                <button class="add-card">Add Card</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transactions Statistics -->
+    <div class="transactions-statistics">
+        <div class="header">
+            <div class="title">Transactions Statistics</div>
+            <div class="date-controls">
+                <button>Previous Month</button>
+                <div class="date-picker">March 2023</div>
+            </div>
+        </div>
+        <div class="line-chart" [chart]="lineChart"></div>
+    </div>
+
+    <!-- All Transactions -->
+    <div class="all-transactions">
+        <div class="transactions-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Destination Account</th>
+                        <th>Type</th>
+                        <th>Card</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Receipt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spotify Subscription</td>
+                        <td>#12548796</td>
+                        <td>Shopping</td>
+                        <td>1234 ****</td>
+                        <td>28 Jan, 12.30 AM</td>
+                        <td class="negative">-$2,500</td>
+                        <td><button class="download-btn">Download</button></td>
+                    </tr>
+                    <tr>
+                        <td>Freepik Sales</td>
+                        <td>#12548796</td>
+                        <td>Transfer</td>
+                        <td>1234 ****</td>
+                        <td>25 Jan, 10.40 PM</td>
+                        <td class="positive">+$750</td>
+                        <td><button class="download-btn">Download</button></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Service</td>
+                        <td>#12548796</td>
+                        <td>Service</td>
+                        <td>1234 ****</td>
+                        <td>20 Jan, 10.40 PM</td>
+                        <td class="negative">-$150</td>
+                        <td><button class="download-btn">Download</button></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="tabs">
+            <div class="tab active">Phân trang</div>
+            <div class="tab">Income</div>
+            <div class="tab">Expense</div>
+        </div>
+    </div>
+</div>
