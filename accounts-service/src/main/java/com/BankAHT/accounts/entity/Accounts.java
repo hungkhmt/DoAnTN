@@ -14,16 +14,16 @@ public class Accounts extends BaseEntity{
 
     @Id
     @Column(name = "account_id")
-    private Long AccountId;
+    private Long accountId;
 
     @Column(name = "customer_id")
-    private Long CustomerId;
+    private Long customerId;
 
     @Column(name = "account_type")
-    private String AccountType;
+    private String accountType;
 
     @Column(name = "balance")
-    private Long Balance;
+    private Long balance;
 
 
     @Column(name = "status")
