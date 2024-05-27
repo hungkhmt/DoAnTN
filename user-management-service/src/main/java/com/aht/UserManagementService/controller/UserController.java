@@ -1,5 +1,6 @@
 package com.aht.UserManagementService.controller;
 
+import com.aht.UserManagementService.dto.ApiResponse;
 import com.aht.UserManagementService.dto.UserDTO;
 import com.aht.UserManagementService.entity.Role;
 import com.aht.UserManagementService.entity.User;
@@ -22,7 +23,6 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/user")
 @Validated
-@CrossOrigin("*")
 @Slf4j
 public class UserController {
     @Autowired
@@ -30,9 +30,9 @@ public class UserController {
 
 
     @PostMapping("/registration")
-    public ResponseEntity<String> createUser(@RequestBody @Valid CreateUserForm form) {
+    public ApiResponse<Void> createUser(@RequestBody @Valid CreateUserForm form) {
         userService.createUser(form);
-        return ResponseEntity.ok("Create Successfully!");
+        return ApiResponse.<Void>builder().build();
     }
 
     @PostMapping("/ad")
