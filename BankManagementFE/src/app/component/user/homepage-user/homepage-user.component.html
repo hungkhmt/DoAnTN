@@ -7,14 +7,14 @@
         <div class="card-body">
             <div class="card-info">
                 <p>Home Account (GBP)</p>
-                <p class="card-number">**** **** **** 4567</p>
-                <p>Card Holder Name: Brett Smith</p>
-                <p>CVV: 789</p>
+                <p class="card-number">9213 4384 3244 4567</p>
+                <p>Holder Name: {{fullname}}</p>
+                <p>Type: {{type}}</p>
                 <p>Expiry Date: 05/2021</p>
-                <p>Spend Limit: €5000</p>
+                <p>Spend Limit: {{spendLimit}}</p>
             </div>
             <div class="card-actions">
-                <button class="transfer-funds">Transfer Funds</button>
+                <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
                 <button class="add-card">Add Card</button>
             </div>
         </div>

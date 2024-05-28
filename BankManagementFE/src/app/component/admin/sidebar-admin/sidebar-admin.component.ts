@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Renderer2, HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -12,7 +13,8 @@ import { RouterModule, Router } from '@angular/router';
 export class SidebarAdminComponent implements OnInit {
   searchIcon: string = 'bx bx-search';
 
-  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {}
+  constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document, private authService: AuthService,
+              private router: Router) {}
 
   ngOnInit() {
     this.setupMenuClickHandlers();
@@ -83,5 +85,18 @@ export class SidebarAdminComponent implements OnInit {
         this.renderer.removeClass(searchForm, 'show');
       }
     }
+  }
+
+  logout() {
+    let token = sessionStorage.getItem('authToken');
+    this.authService.logout(token!).subscribe(
+      respone => {
+        token = sessionStorage.getItem('authToken');
+        if(respone && token == null) {
+          
+          this.router.navigate(['/registration']);
+        }
+      }
+    )
   }
 }

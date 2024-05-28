@@ -9,6 +9,13 @@ import { TransactionAdminComponent } from './component/admin/transaction-admin/t
 import { ProfileComponent } from './component/profile/profile.component';
 import { HomepageComponent } from './component/admin/homepage/homepage.component';
 import { HomepageUserComponent } from './component/user/homepage-user/homepage-user.component';
+import { authGuard } from './auth.guard';
+import { ForbiddenComponent } from './component/forbidden/forbidden.component';
+import { TransactionComponent } from './component/user/transaction/transaction.component';
+import { AccountComponent } from './component/user/account/account.component';
+import { SidebarUserComponent } from './component/user/sidebar-user/sidebar-user.component';
+import { RegistrationComponent } from './component/registration/registration.component';
+import { AccountmanagementAdminComponent } from './component/admin/accountmanagement-admin/accountmanagement-admin.component';
 
 export const routes: Routes = [
     {
@@ -16,11 +23,6 @@ export const routes: Routes = [
         component: LoginComponent,
         title: 'Login',
     },
-    {
-      path: '',
-      component: LoginComponent,
-      title: 'Login',
-  },
     {
       path: 'admin',
       component: SidebarAdminComponent,
@@ -43,6 +45,10 @@ export const routes: Routes = [
           component: UsermanagementAdminComponent
         },
         {
+          path: 'account',
+          component: AccountmanagementAdminComponent
+        },
+        {
           path: 'transaction',
           component: TransactionAdminComponent,
         },
@@ -51,20 +57,22 @@ export const routes: Routes = [
           component: ProfileComponent,
         },
       ],
-      title: 'AdminDashboard'
+      title: 'AdminDashboard',
+      // canActivate: [authGuard],
+      // data: { expectedRole: 'ADMIN' }
     },
     {
       path: 'user',
-      component: SidebarAdminComponent,
+      component: SidebarUserComponent,
       children: [
         { path: 'homepage', component: HomepageUserComponent },
         {
-          path: 'dashboard',
-          component: DashboardAdminComponent,
+          path: 'transaction',
+          component: TransactionComponent,
         },
         {
-          path: 'transaction',
-          component: TransactionAdminComponent,
+          path: 'account',
+          component: AccountComponent,
         },
         {
           path: 'profile',
@@ -72,10 +80,15 @@ export const routes: Routes = [
         }
       ],
       title: 'E-Banking'
-    }
-    
-    
-    
-    
-    
+    },
+    {
+      path: 'forbidden',
+      component: ForbiddenComponent,
+      title: "Forbidden"
+    },
+    {
+      path: 'registration',
+      component: RegistrationComponent,
+      title: "Welcome"
+    } 
 ];

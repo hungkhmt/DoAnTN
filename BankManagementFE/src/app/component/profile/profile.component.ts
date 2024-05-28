@@ -8,6 +8,7 @@ import { MatOption } from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/user';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,14 +19,16 @@ import { User } from '../../model/user';
 })
 export class ProfileComponent {
 
-  constructor(private userService: UserService) {};
+  constructor(private userService: UserService, private authService: AuthService) {};
   
   user: User | undefined;
 
   phoneNumber: string | undefined;
 
+  userId = this.authService.getUserId();
+
   ngOnInit() {
-    this.getUserById(1);
+    this.getUserById(this.userId);
   }
 
   getUserById(id: any) {

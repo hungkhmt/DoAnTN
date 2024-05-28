@@ -5,7 +5,7 @@
   </a>
   <ul class="side-menu top">
       <li class="active">
-          <a [routerLink]="['/user/homepage']">
+          <a [routerLink]="['/admin/homepage']">
               <i class='bx bxs-dashboard'></i>
               <span class="text">Homepage</span>
           </a>
@@ -24,7 +24,7 @@
       </li>
 
       <li id="userManagement">
-        <a [routerLink]="['/admin/user']">
+        <a [routerLink]="['/admin/account']">
             <i class='bx bxs-user-account'></i>
           <span>Accounts Management</span>
         </a>
@@ -51,13 +51,7 @@
   </ul>
   <ul class="side-menu">
       <li>
-          <a [routerLink]="['/profile']">
-              <i class='bx bxs-cog'></i>
-              <span class="text">Profiles</span>
-          </a>
-      </li>
-      <li>
-          <a class="logout" [routerLink]="['/login']">
+          <a class="logout" (click)="logout()">
               <i class='bx bxs-log-out-circle'></i>
               <span class="text">Logout</span>
           </a>
