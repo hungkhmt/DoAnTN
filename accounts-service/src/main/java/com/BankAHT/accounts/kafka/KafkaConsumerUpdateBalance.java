@@ -43,7 +43,7 @@ public class KafkaConsumerUpdateBalance {
             // Update balance
             Long newBalance = account.getBalance() + messageTransaction.getAmount();
             account.setBalance(newBalance);
-            accountService.updateAccount(account);
+            accountService.updateBalance(account.getAccountId(),newBalance);
             dem++;
         System.out.println("so lan nhan: "+dem);
         } catch (Exception e) {

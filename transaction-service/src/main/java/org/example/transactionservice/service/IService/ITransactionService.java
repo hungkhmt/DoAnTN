@@ -23,4 +23,5 @@ public interface ITransactionService {
 
 
     List<Transaction> findByIdAccounts(Long id);
+    List<Transaction> findByIdCustomer(Long id);
 }

@@ -62,8 +62,9 @@ public class AccountServiceImlp implements IAccountService {
         accounts.setCreatedBy("PTD-PTIT");
         accounts.setStatus(AccountStatus.PENDING);
         accounts.setBalance(50_000L);
+        accounts.setMaxTransactionAmount(2_000_000.0);
         accountRepository.save(accounts);
-        kafkaTemplate.send("create_account",accountDto.toString());
+//        kafkaTemplate.send("create_account",accountDto.toString());
     }
 
     @Override
@@ -105,6 +106,15 @@ public class AccountServiceImlp implements IAccountService {
         return false;
     }
 
+    @Override
+    public void updateBalance(Long idAccount,Long amount) {
+        Accounts accounts= accountRepository.findById(idAccount).orElseThrow(()-> new ResourceNoFoundException("Accouts",idAccount.toString(),"AccoutsNumber"));
+//        accounts.setBalance(accounts.getBalance()+amount);
+//        accountRepository.save(accounts);
+        accountRepository.updateBalanceByAccountIdAndAmount(idAccount,amount);
+    }
+
+
     @Transactional
     @Override
     public boolean deleteAccount(Long accountNumber) {
@@ -127,7 +137,16 @@ public class AccountServiceImlp implements IAccountService {
         accounts.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         accounts.setUpdatedBy("PTD-PTIT");
         accountRepository.save(accounts);
-        kafkaTemplate.send("enable_account",accountNumber);
+        AccountDto accountDto= AccountDto.builder()
+                .accountId(accountNumber)
+                .customerId(accounts.getCustomerId())
+                .accountType(accounts.getAccountType())
+                .balance(accounts.getBalance())
+                .accountStatus(accounts.getStatus())
+                .build();
+        //se chi gui create_account du la tao hay enable ve phia transaction con logic se do transaction su ly
+        kafkaTemplate.send("create_account",accountDto.toString());
+//        kafkaTemplate.send("enable_account",accountNumber);
     }
 
 //    delete_account
