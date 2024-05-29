@@ -13,6 +13,8 @@ public interface IUserService {
     public void createUser(CreateUserForm user);
     public void createUserFromAdmin(CreateUserForAdminForm user);
     public List<User> getAllUsers();
+    public List<User> getAllUserDisable();
+    public List<User> getAllUserActive();
     public User getUserById(Integer id);
     public User updateUser(UpdateUserForm form);
     public void deleteUser(Integer userId);

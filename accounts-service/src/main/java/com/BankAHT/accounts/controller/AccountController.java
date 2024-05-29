@@ -20,7 +20,6 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/account")
 @Validated
-@CrossOrigin("*")
 public class AccountController {
 
     @Autowired
@@ -43,6 +42,10 @@ public class AccountController {
         return accountService.getAllAccount();
     }
 
+    @GetMapping("/accountInfo")
+    public List<AccountDto> getAllAccountByUserId(@RequestParam Long userId) {
+        return accountService.getAllAccountByUserId(userId);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<?> createAccount(@RequestBody AccountDto accountDto, @RequestHeader("Authorization") String token){

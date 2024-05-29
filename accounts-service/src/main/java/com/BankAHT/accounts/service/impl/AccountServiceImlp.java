@@ -107,6 +107,16 @@ public class AccountServiceImlp implements IAccountService {
     }
 
     @Override
+    public List<AccountDto> getAllAccountByUserId(Long userId) {
+        List<Accounts> accounts = accountRepository.findAllByCustomerId(userId);
+        List<AccountDto> accountDtos = new ArrayList<>();
+        for(Accounts accounts1: accounts) {
+            accountDtos.add(accountToAccountDTO(accounts1));
+        }
+        return accountDtos;
+    }
+
+    @Override
     public boolean updateAccount(AccountDto accountDto) {
 
         Accounts oldAccouts= accountRepository.findById(accountDto.getAccountId()).orElseThrow(()-> new ResourceNoFoundException("Accouts",accountDto.getAccountId().toString(),"AccoutsNumber"));

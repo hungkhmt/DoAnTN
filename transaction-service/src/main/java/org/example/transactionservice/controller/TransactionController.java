@@ -23,7 +23,6 @@ import java.util.List;
 @RequestMapping("/api/v1/transaction")
 @AllArgsConstructor
 @Slf4j
-@CrossOrigin("*")
 public class TransactionController {
 
     @Autowired

@@ -82,6 +82,14 @@ public class UserService implements IUserService{
         return userRepository.findAll();
     }
 
+    public List<User> getAllUserActive() {
+        return userRepository.findAllByStatus(UserStatus.ACTIVE);
+    }
+
+    public List<User> getAllUserDisable() {
+        return userRepository.findAllByStatus(UserStatus.INACTIVE);
+    }
+
     public User getUserById(Integer id) {
         return userRepository.findById(id).get();
     }

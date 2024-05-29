@@ -34,7 +34,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     ObjectMapper objectMapper;
 
     @NonFinal
-    String[] publicEndpoints = {"/api/v1/auth/.*"};
+    String[] publicEndpoints = {"/api/v1/auth/.*", "/api/v1/user/registration"};
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
