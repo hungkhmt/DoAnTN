@@ -73,7 +73,7 @@ public class AccountServiceImlp implements IAccountService {
     }
     @Transactional
     @Override
-    public void createAccount(AccountDto accountDto) {
+    public Accounts createAccount(AccountDto accountDto) {
         // tạo tài khoan thi account se co 50k
         accountDto.setBalance(50_000L);
 
@@ -85,7 +85,8 @@ public class AccountServiceImlp implements IAccountService {
         accounts.setStatus(AccountStatus.PENDING);
         accounts.setBalance(50_000L);
         accounts.setMaxTransactionAmount(2_000_000.0);
-        accountRepository.save(accounts);
+        return  accountRepository.save(accounts);
+
 //        kafkaTemplate.send("create_account",accountDto.toString());
     }
 
