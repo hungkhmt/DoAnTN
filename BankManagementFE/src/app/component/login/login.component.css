@@ -113,7 +113,7 @@ button:hover {
     padding-bottom: 30px;
 }
 
-#footer_content{
+.footer_content{
     font-weight: 300;
     color: #888888;
     padding-bottom: 15px;

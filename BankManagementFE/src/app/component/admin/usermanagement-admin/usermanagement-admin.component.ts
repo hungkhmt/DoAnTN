@@ -18,6 +18,7 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { Transaction } from '../../../model/transaction';
 import { Role, User } from '../../../model/user';
 import { UserService } from '../../../service/user.service';
+import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
 
 @Component({
   selector: 'app-usermanagement-admin',
@@ -27,7 +28,7 @@ import { UserService } from '../../../service/user.service';
   styleUrl: './usermanagement-admin.component.css'
 })
 export class UsermanagementAdminComponent {
-  displayedColumns: string[] = ['fullname', 'phoneNumber', 'username', 'dateOfBirth', 'email', 'address', 'created_at', 'roles', 'action'];
+  displayedColumns: string[] = ['userId', 'fullname', 'phoneNumber', 'username', 'dateOfBirth', 'email', 'address', 'created_at', 'roles', 'action'];
   dataSource = new MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -46,8 +47,20 @@ export class UsermanagementAdminComponent {
     this.getAllUser();
   }
 
+  openAddUserForm() {
+    console.log("ready");
+    const dialogRef = this._dialog.open(AddEditUserComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (res: any) => {
+        this.getAllUser();
+      }, error: (err) => {
+        alert('fail')
+      }
+    })
+  }
+
   getAllUser() {
-    this.userService.getAllUserWithRole().subscribe({
+    this.userService.getAllUserActive().subscribe({
       next: (res) => {
         // Chuyển đổi dữ liệu trước khi gán vào dataSource
         const usersWithFormattedRoles = res.map((user: User) => ({
@@ -62,6 +75,17 @@ export class UsermanagementAdminComponent {
       },
       error: (err) => {
         console.log(err)
+      }
+    })
+  }
+
+  deleteUser(id: number) {
+    this.userService.disableUser(id).subscribe({
+      next: (res) => {
+        alert("Disable User id: " + id);
+        this.getAllUser();
+      }, error: (err) => {
+        alert('Disable Fail')
       }
     })
   }

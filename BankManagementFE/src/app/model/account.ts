@@ -1,10 +1,8 @@
-export interface User {
-    id: string;
-    name: string;
-    dateOfBirth: string;
-    phoneNumber: number;
-    address: string;
-    username: string;
-    password: string;
-    email: string;
+export interface Account {
+    customerId: string;
+    accountId: string;
+    accountType: string;
+    balance: number;
+    createdAt: string;
+    accountStatus: string;
 }

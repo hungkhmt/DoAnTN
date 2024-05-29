@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { User } from '../../model/user';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    private authService: AuthService) {
     }
 
     userInfo : User | undefined
@@ -57,7 +59,25 @@ export class LoginComponent {
   //   )    
   // }
 
-  
-  
+  loginUser() {
+    const { username, password } = this.loginForm.value;
+    this.authService.login(username!, password!).subscribe(
+      respone => {
+        let role = this.authService.getRole();
+        if(!role) {
+          this.router.navigate(['/forbidden'])
+          this.isLogin = false;
+        }
+        if(role && role == "ADMIN") {
+          this.isLogin = true;
+          this.router.navigate(['/admin']);
+        } else {
+          this.isLogin = true;
+          this.router.navigate(['/user']);
+        }
+        
+      }
+    )
+  }
   
 }
