@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 public class AccountDto {
 
     @NotEmpty(message = "CustomerId không thể là null hoặc empty")
-    @Pattern(regexp = "^[0-9]{10}$", message = "CustomerId phải là một số gồm 10 chữ số")
+    @Pattern(regexp = "^[0-9]{16}$", message = "CustomerId phải là một số gồm 16 chữ số")
     private Long customerId;
 
     @NotEmpty(message = "AccountsNumber không thể là null hoặc empty")

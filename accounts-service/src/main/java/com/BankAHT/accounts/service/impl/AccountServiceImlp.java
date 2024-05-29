@@ -19,6 +19,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
 import jakarta.transaction.Transactional;
@@ -50,6 +51,26 @@ public class AccountServiceImlp implements IAccountService {
 //                .build();
 //        kafkaTemplateUpdateAccount.send("create_account",messageUpdateAccount);
 //  }
+
+    public Long generateRandom(){
+        Random random= new Random();
+        StringBuilder idUnique=new StringBuilder();
+        for(int i=0;i<16;i++){
+
+//            idUnique.append(random.nextInt(10));
+            idUnique.append(random.nextInt(9) + 1);
+        }
+        return Long.parseLong(idUnique.toString());
+    }
+
+    public Long generateUnique(){
+
+        Long idGenerate;
+        do {
+            idGenerate= generateRandom();
+        }while (accountRepository.existsById(idGenerate));
+        return idGenerate;
+    }
     @Transactional
     @Override
     public void createAccount(AccountDto accountDto) {
@@ -58,6 +79,7 @@ public class AccountServiceImlp implements IAccountService {
 
 
         Accounts accounts= AccountMapper.AccountDtoToAccount(accountDto);
+        accounts.setAccountId(generateUnique());
         accounts.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         accounts.setCreatedBy("PTD-PTIT");
         accounts.setStatus(AccountStatus.PENDING);

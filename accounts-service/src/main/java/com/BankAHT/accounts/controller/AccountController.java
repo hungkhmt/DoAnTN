@@ -87,7 +87,7 @@ public class AccountController {
 
     @PostMapping("/ad/enable")
     public ResponseEntity<?> enableAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
-                                           @Max(value = 9999999999L, message = "AccountNumber không được vượt quá 10 chữ số")
+                                           @Max(value = 9999999999999999L, message = "AccountNumber không được vượt quá 16 chữ số")
                                            Long accountId){
         accountService.enableAccount(accountId);
         return ResponseEntity.status(HttpStatus.OK).body("Enable Account "+accountId+" Success !");

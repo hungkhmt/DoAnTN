@@ -21,4 +21,9 @@ public class AccountRepository {
     }
 
 
+    @Test
+    public void testExistsById(){
+        boolean check= accountRepository.existsById(1234567812L);
+        System.out.println(check);
+    }
 }
