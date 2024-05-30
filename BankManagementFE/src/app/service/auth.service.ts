@@ -43,6 +43,7 @@ export class AuthService {
             this.token = null;
             sessionStorage.removeItem('authToken');
             sessionStorage.removeItem('isLoggin');
+            sessionStorage.removeItem('currentAccount');
           }
         })
       );

@@ -25,6 +25,9 @@ export class HomepageUserComponent {
 
   fullname: String | undefined;
   type: String | undefined;
+  accId = sessionStorage.getItem('currentAccount');
+  accIdStr: string | undefined;
+  userId = this.authService.getUserId();
 
   month: number | undefined;
   chartData: any[] = [];
@@ -34,6 +37,9 @@ export class HomepageUserComponent {
   ngOnInit() {
     this.setCurrentMonth();
     this.getTransactionApi(this.month!);
+    this.setAccountId();
+    this.accIdStr = this.formatNumber(this.accId);
+    this.getUserByUserId();
   }
 
   updateChartData(transactions1: Transaction[], transactions2: Transaction[]) {
@@ -141,8 +147,8 @@ export class HomepageUserComponent {
   }
 
   getTransactionApi(month: number) {
-    this.transactionService.getAllTransactionSourceId(9991, month).subscribe(transactions1 => {
-      this.transactionService.getAllTransactionDestinationId(9991, month).subscribe(transactions2 => {
+    this.transactionService.getAllTransactionSourceId(this.accId, month).subscribe(transactions1 => {
+      this.transactionService.getAllTransactionDestinationId(this.accId, month).subscribe(transactions2 => {
         this.updateChartData(transactions1, transactions2);
         console.log(this.month);
         // this.initializeChart();
@@ -199,5 +205,30 @@ export class HomepageUserComponent {
       alert("Month is not alowed!!!");
     }
     
+  }
+
+  setAccountId() {
+    this.accountService.getAllAccountByUserId(this.authService.getUserId()).subscribe(
+      respone => {
+        sessionStorage.setItem('currentAccount', respone[0].accountId);
+        // this.accId = respone[0].accountId;
+      }
+    )
+  }
+
+  formatNumber(value: any): any {
+    return value.replace(/(\d{4})(?=\d)/g, '$1 ');
+  }
+
+  getUserByUserId() {
+    this.userService.getUserById(this.userId).subscribe({
+      next: (respone: any) => {
+        console.log(respone.fullname);
+        this.fullname = respone.fullname;
+      },
+      error: (err: any) => {
+        console.log("error: ", err);
+      }
+    });
   }
 }

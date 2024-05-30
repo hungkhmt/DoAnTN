@@ -32,13 +32,13 @@ export class AccountService {
       const headers = this.authService.getAuthHeaders();
       let params = new HttpParams().set('userId', userId.toString());
       return this.http.get<any[]>(`${this.url.concat('/accountInfo')}`, {headers, params})
-        .pipe(
-          tap(response => {
-            if(response) {
-              sessionStorage.setItem('currentAccount', String(response[0].accountId));
-            }
-          })
-        );
+        // .pipe(
+        //   tap(response => {
+        //     if(response) {
+        //       sessionStorage.setItem('currentAccount', String(response[0].accountId));
+        //     }
+        //   })
+        // );
     }
 
     getUserByAccId(accId: any): Observable<any>{
@@ -48,6 +48,7 @@ export class AccountService {
 
     getAccountByAccId(accId: any): Observable<any>{
       const headers = this.authService.getAuthHeaders();
-      return this.http.get(this.url.concat('/fetch'), {headers});
+      let params = new HttpParams().set('accountId', accId.toString());
+      return this.http.get(this.url.concat('/fetch'), {params, headers});
     }
 }

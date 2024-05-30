@@ -30,9 +30,7 @@ public class AccountController {
     private RestTemplate restTemplate;
 
     @GetMapping("/fetch")
-    public ResponseEntity<?> fetchAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
-                                              @Max(value = 9999999999L, message = "AccountNumber không được vượt quá 10 chữ số")
-                                              Long accountId){
+    public ResponseEntity<?> fetchAccount(@RequestParam Long accountId){
         AccountDto accountDto= accountService.fetchAccount(accountId);
 
         return ResponseEntity.status(HttpStatus.OK).body(accountDto);

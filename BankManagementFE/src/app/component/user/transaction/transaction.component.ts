@@ -33,11 +33,11 @@ export class TransactionComponent implements OnInit {
 
   user: User | undefined;
   fullname: string | undefined;
-  accountId: number | undefined;
+  accountId = sessionStorage.getItem('currentAccount');
   balance: number | undefined;
   formattedBalance: string | undefined;
   userId = this.authService.getUserId();
-  accounts: any[] | undefined;
+  accounts: any | undefined;
 
   constructor(
     private tranferService: TranferService,
@@ -49,7 +49,7 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit() {
     this.getUserByUserId();
-    this.getAccountByUserId();
+    this.getAccountByAccId()
   
     // Lắng nghe sự thay đổi giá trị của destinationAccountId
     this.tranferForm.get('destinationAccountId')?.valueChanges.subscribe(accId => {
@@ -79,7 +79,7 @@ export class TransactionComponent implements OnInit {
       next: (val: any) => {
         // this.tranferForm.clearValidators;
         alert("Tranfer Successful");
-        this.getAccountByUserId();
+        this.getAccountByAccId();
         this.tranferForm.reset();
       },
       error: (err: any) => {
@@ -100,12 +100,13 @@ export class TransactionComponent implements OnInit {
     });
   }
 
-  getAccountByUserId() {
-    this.accountService.getAllAccountByUserId(this.userId).subscribe({
-      next: (response: any[]) => {
+
+
+  getAccountByAccId() {
+    this.accountService.getAccountByAccId(this.accountId).subscribe({
+      next: (response: any) => {
         this.accounts = response;
-        this.accountId = this.accounts[0].accountId;
-        this.balance = this.accounts[0].balance;
+        this.balance = this.accounts.balance;
         this.formattedBalance! = this.decimalPipe.transform(this.balance, '1.0-0')!;
       },
       error: (err: any) => {
