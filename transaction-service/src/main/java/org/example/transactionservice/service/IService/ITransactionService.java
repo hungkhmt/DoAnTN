@@ -23,5 +23,7 @@ public interface ITransactionService {
 
 
     List<Transaction> findByIdAccounts(Long id);
+    List<Transaction> findBySourceAccountId(Long id, Integer mounth);
+    List<Transaction> findByDestinationAccountId(Long id, Integer mounth);
     List<Transaction> findByIdCustomer(Long id);
 }

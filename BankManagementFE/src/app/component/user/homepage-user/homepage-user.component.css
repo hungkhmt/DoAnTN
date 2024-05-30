@@ -146,6 +146,7 @@
 .transactions-statistics {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    max-width: 100%;
 }
 
 .transactions-statistics .header {

@@ -10,8 +10,7 @@
                 <p class="card-number">9213 4384 3244 4567</p>
                 <p>Holder Name: {{fullname}}</p>
                 <p>Type: {{type}}</p>
-                <p>Expiry Date: 05/2021</p>
-                <p>Spend Limit: {{spendLimit}}</p>
+                <p class="card-logo">E-Banking</p>
             </div>
             <div class="card-actions">
                 <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
@@ -25,8 +24,17 @@
         <div class="header">
             <div class="title">Transactions Statistics</div>
             <div class="date-controls">
-                <button>Previous Month</button>
+                <div class="date-controls">
+                    <button (click)="setPreviousMonth()">Previous Month</button>
+                    <button (click)="setNextMonth()">Next Month</button>
+                <!-- <mat-form-field appearance="fill">
+                  <mat-label>Date</mat-label>
+                  <input matInput [matDatepicker]="picker" [formControl]="dateControl" (dateChange)="onDateChange($event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field> -->
                 <div class="date-picker">March 2023</div>
+                </div>
             </div>
         </div>
         <div class="line-chart" [chart]="lineChart"></div>

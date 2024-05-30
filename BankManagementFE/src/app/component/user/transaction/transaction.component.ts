@@ -104,7 +104,6 @@ export class TransactionComponent implements OnInit {
     this.accountService.getAllAccountByUserId(this.userId).subscribe({
       next: (response: any[]) => {
         this.accounts = response;
-        console.log("response.accountId: ", this.accounts[0].accountId, " + response.balance", this.accounts[0].balance);
         this.accountId = this.accounts[0].accountId;
         this.balance = this.accounts[0].balance;
         this.formattedBalance! = this.decimalPipe.transform(this.balance, '1.0-0')!;

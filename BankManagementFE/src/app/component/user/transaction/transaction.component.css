@@ -9,11 +9,13 @@
 
 .transfer-body {
   max-width: 600px;
-  margin: auto;
   padding: 20px;
+  margin: auto;
+  height: 70%;
   border: 1px solid #ccc;
   border-radius: 5px; /* Viền bo tròn */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+  /* background-color: linear-gradient(135deg, #6e00ff, #ff00c3); */
 }
 
 .dropdown-button {
