@@ -22,7 +22,7 @@ export class UserService {
 
     getUserById(id: any): Observable<any>{
       const headers = this.authService.getAuthHeaders();
-        return this.http.get<User>(`${this.url}/${id}`, {headers});
+      return this.http.get<User>(`${this.url}/${id}`, {headers});
     }
 
     addUserByAdmin(data: any): Observable<any>{

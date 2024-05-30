@@ -74,6 +74,19 @@ public class TransactionController {
         return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
     }
 
+    @GetMapping("/sourceId/{id}")
+    public ResponseEntity<?> listAllTransactionBySourceAccId(@PathVariable("id") Long idAccount, @RequestParam(required = false) Integer mounth) {
+
+        List<Transaction> listTransaction= transactionService.findBySourceAccountId(idAccount, mounth);
+        return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
+    }
+
+    @GetMapping("/destinationId/{id}")
+    public ResponseEntity<?> listAllTransactionByDestinationAccId(@PathVariable("id") Long idAccount, @RequestParam(required = false) Integer mounth) {
+        List<Transaction> listTransaction= transactionService.findByDestinationAccountId(idAccount, mounth);
+        return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
+    }
+
     @GetMapping("/transaction-by-customerId/{id}")
     public ResponseEntity<?> listAllTransactionByCustomerId(@PathVariable("id") Long idCustomer) {
         List<Transaction> listTransaction= transactionService.findByIdCustomer(idCustomer);
