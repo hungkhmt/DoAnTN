@@ -3,6 +3,7 @@ package com.BankAHT.accounts.controller;
 import com.BankAHT.accounts.dto.AccountDto;
 import com.BankAHT.accounts.dto.MessageUpdateAccount;
 import com.BankAHT.accounts.dto.UserDTO;
+import com.BankAHT.accounts.entity.Accounts;
 import com.BankAHT.accounts.service.IAccountService;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -70,6 +71,33 @@ public class AccountController {
         }
     }
 
+    @PostMapping("/ad/create")
+    public ResponseEntity<?> createAccountAdmin(@RequestBody AccountDto accountDto, @RequestHeader("Authorization") String token){
+//        Long userId = accountDto.getCustomerId();
+//        String url = "http://localhost:8081/api/v1/user/" + userId;
+//
+//        // Tạo HttpHeaders và đính kèm token
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Authorization", token); // Đặt token vào header từ request ban đầu
+//
+//        // Tạo HttpEntity với headers
+//        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        // Sử dụng RestTemplate để gọi API
+//        ResponseEntity<UserDTO> response = restTemplate.exchange(url, HttpMethod.GET, entity, UserDTO.class);
+//
+//        if(response.getStatusCode() == HttpStatus.OK) {
+//            accountService.createAccount(accountDto);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(accountDto);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(accountDto);
+//        }
+
+        Accounts accounts=accountService.createAccount(accountDto);
+        accountService.enableAccount(accounts.getAccountId());
+        return ResponseEntity.status(HttpStatus.OK).body("Create account Success !");
+    }
+
     @PutMapping("/update")
     public ResponseEntity<?> updateAccount(@RequestBody AccountDto accountDto){
         accountService.updateAccount(accountDto);
@@ -90,7 +118,7 @@ public class AccountController {
 
     @PostMapping("/ad/enable")
     public ResponseEntity<?> enableAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
-                                           @Max(value = 9999999999L, message = "AccountNumber không được vượt quá 10 chữ số")
+                                           @Max(value = 9999999999999999L, message = "AccountNumber không được vượt quá 16 chữ số")
                                            Long accountId){
         accountService.enableAccount(accountId);
         return ResponseEntity.status(HttpStatus.OK).body("Enable Account "+accountId+" Success !");
