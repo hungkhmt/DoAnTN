@@ -28,6 +28,7 @@ export class HomepageUserComponent {
   accId = sessionStorage.getItem('currentAccount');
   accIdStr: string | undefined;
   userId = this.authService.getUserId();
+  listAcc: any[] | undefined;
 
   month: number | undefined;
   chartData: any[] = [];
@@ -40,6 +41,7 @@ export class HomepageUserComponent {
     this.setAccountId();
     this.accIdStr = this.formatNumber(this.accId);
     this.getUserByUserId();
+    this.getAllAccount();
   }
 
   updateChartData(transactions1: Transaction[], transactions2: Transaction[]) {
@@ -202,7 +204,7 @@ export class HomepageUserComponent {
       this.updateMonthDisplay(nextMonth);
       this.getTransactionApi(this.month);
     } else {
-      alert("Month is not alowed!!!");
+      alert("Invalid month!!!");
     }
     
   }
@@ -230,5 +232,33 @@ export class HomepageUserComponent {
         console.log("error: ", err);
       }
     });
+  }
+
+  getAllAccount() {
+    this.accountService.getAllAccountByUserId(this.userId).subscribe((data: any[]) => {
+      this.listAcc = data;
+    });
+  }
+
+  currentSlide = 0;
+
+  get transformStyle() {
+    return `translateX(-${this.currentSlide * 100}%)`;
+  }
+
+  prevSlide() {
+    this.currentSlide = (this.currentSlide > 0) ? this.currentSlide - 1 : this.listAcc!?.length - 1;
+    sessionStorage.setItem('currentAccount', this.listAcc![this.currentSlide].accountId);
+    this.accId = sessionStorage.getItem('currentAccount');
+    this.accIdStr = this.formatNumber(this.accId);
+    this.getTransactionApi(this.month!);
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.listAcc!?.length;
+    sessionStorage.setItem('currentAccount', this.listAcc![this.currentSlide].accountId);
+    this.accId = sessionStorage.getItem('currentAccount');
+    this.accIdStr = this.formatNumber(this.accId);
+    this.getTransactionApi(this.month!);
   }
 }
