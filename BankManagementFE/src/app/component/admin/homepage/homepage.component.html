@@ -1,52 +1,39 @@
-<c-row>
-    <c-col lg="6" xs="12">
-      <c-widget-stat-f
-        [title]="'Widget Title'"
-        class="mb-3"
-        color="primary"
-        padding
-        value="89.9%"
-      >
-        <ng-template cTemplateId="widgetIconTemplate">
-          <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
-        </ng-template>
-      </c-widget-stat-f>
-    </c-col>
-    <c-col lg="6" xs="12">
-      <c-widget-stat-f
-        [title]="'Widget Title'"
-        class="mb-3"
-        color="warning"
-        padding
-        value="89.9%"
-      >
-        <ng-template cTemplateId="widgetIconTemplate">
-          <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
-        </ng-template>
-      </c-widget-stat-f>
-    </c-col>
-    <c-col lg="6" xs="12">
-      <c-widget-stat-f
-        [title]="'Widget Title'"
-        class="mb-3"
-        color="primary"
-        value="89.9%"
-      >
-        <ng-template cTemplateId="widgetIconTemplate">
-          <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
-        </ng-template>
-      </c-widget-stat-f>
-    </c-col>
-    <c-col lg="6" xs="12">
-      <c-widget-stat-f
-        [title]="'Widget Title'"
-        class="mb-3"
-        color="warning"
-        value="89.9%"
-      >
-        <ng-template cTemplateId="widgetIconTemplate">
-          <svg [cIcon]="icons.cilChartPie" size="xl" width="24"></svg>
-        </ng-template>
-      </c-widget-stat-f>
-    </c-col>
-  </c-row>
+<div class="card-container">
+  <div class="card card-1">
+    <div class="card-icon">
+      <i class='bx bxs-group'></i>
+    </div>
+    <div class="card-info">
+      <div class="card-amount">8,120</div>
+      <div class="card-label">ALL USER</div>
+    </div>
+  </div>
+  <div class="card card-2">
+    <div class="card-icon">
+      <i class='bx bx-transfer' ></i>
+    </div>
+    <div class="card-info">
+      <div class="card-amount">11,250</div>
+      <div class="card-label">TRANSACTION</div>
+    </div>
+  </div>
+  <div class="card card-3">
+    <div class="card-icon">
+      <i class='bx bxs-user-account'></i>
+    </div>
+    <div class="card-info">
+      <div class="card-amount">15,228</div>
+      <div class="card-label">ALL ACCOUNT</div>
+    </div>
+  </div>
+  <div class="card card-4">
+    <div class="card-icon">
+      <i class='bx bx-user-plus'></i>
+    </div>
+    <div class="card-info">
+      <div class="card-amount">20</div>
+      <div class="card-label">PENDING ACCOUNT</div>
+    </div>
+  </div>
+</div>
+
