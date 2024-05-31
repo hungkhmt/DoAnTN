@@ -4,17 +4,116 @@
         <div class="card-header">
             <h2>Virtual Card</h2>
         </div>
-        <div class="card-body">
-            <div class="card-info">
-                <p>Home Account (GBP)</p>
-                <p class="card-number">{{accIdStr}}</p>
-                <p>Holder Name: {{fullname}}</p>
-                <p>Type: Saving</p>
-                <p class="card-logo">E-Banking</p>
+        <div class="slider-container">
+            <div class="card-body" [style.transform]="transformStyle">
+                <div class="card-home">
+                    <div class="card-info">
+                        <div class="info-header">
+                            <span class="card-title">Home Account (GBP)</span>
+                            <span class="card-logo">EBank</span>
+                        </div>
+                        <div class="card-number">
+                            <p>{{accIdStr}}</p>
+                        </div>
+                        
+                        <div class="infor-footer">
+                            <div class="footer-left">
+                                <span class="footer-left-title">Card Holder</span>
+                                <span class="footer-left-owner">{{fullname?.toUpperCase() }}</span>
+                            </div>
+                            <div class="footer-right">
+                                <span class="footer-right-title">Expries</span>
+                                <span class="footer-right-owner">05/30</span>
+                            </div>              
+                        </div>      
+                    </div> 
+                    <div class="card-actions">
+                        <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
+                        <button class="add-card">Add Card</button>
+                    </div>
+                </div>
+                <div class="card-home">
+                    <div class="card-info">
+                        <div class="info-header">
+                            <span class="card-title">Home Account (GBP)</span>
+                            <span class="card-logo">EBank</span>
+                        </div>
+                        <div class="card-number">
+                            <p>{{accIdStr}}</p>
+                        </div>
+                        
+                        <div class="infor-footer">
+                            <div class="footer-left">
+                                <span class="footer-left-title">Card Holder</span>
+                                <span class="footer-left-owner">{{fullname?.toUpperCase() }}</span>
+                            </div>
+                            <div class="footer-right">
+                                <span class="footer-right-title">Expries</span>
+                                <span class="footer-right-owner">05/30</span>
+                            </div>              
+                        </div>      
+                    </div> 
+                    <div class="card-actions">
+                        <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
+                        <button class="add-card">Add Card</button>
+                    </div>
+                </div>
+                <div class="card-home">
+                    <div class="card-info">
+                        <div class="info-header">
+                            <span class="card-title">Home Account (GBP)</span>
+                            <span class="card-logo">EBank</span>
+                        </div>
+                        <div class="card-number">
+                            <p>{{accIdStr}}</p>
+                        </div>
+                        
+                        <div class="infor-footer">
+                            <div class="footer-left">
+                                <span class="footer-left-title">Card Holder</span>
+                                <span class="footer-left-owner">{{fullname?.toUpperCase() }}</span>
+                            </div>
+                            <div class="footer-right">
+                                <span class="footer-right-title">Expries</span>
+                                <span class="footer-right-owner">05/30</span>
+                            </div>              
+                        </div>      
+                    </div> 
+                    <div class="card-actions">
+                        <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
+                        <button class="add-card">Add Card</button>
+                    </div>
+                </div>
+                <div class="card-home">
+                    <div class="card-info">
+                        <div class="info-header">
+                            <span class="card-title">Home Account (GBP)</span>
+                            <span class="card-logo">EBank</span>
+                        </div>
+                        <div class="card-number">
+                            <p>{{accIdStr}}</p>
+                        </div>
+                        
+                        <div class="infor-footer">
+                            <div class="footer-left">
+                                <span class="footer-left-title">Card Holder</span>
+                                <span class="footer-left-owner">{{fullname?.toUpperCase() }}</span>
+                            </div>
+                            <div class="footer-right">
+                                <span class="footer-right-title">Expries</span>
+                                <span class="footer-right-owner">05/30</span>
+                            </div>              
+                        </div>      
+                    </div> 
+                    <div class="card-actions">
+                        <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
+                        <button class="add-card">Add Card</button>
+                    </div>
+                </div>                          
             </div>
-            <div class="card-actions">
-                <a [routerLink]="['/user/transaction']" class="transfer-funds">Transfer Funds</a>
-                <button class="add-card">Add Card</button>
+            <div class="navigation">
+                <button (click)="prevSlide()">Previous</button>
+                <button (click)="nextSlide()">Next</button>
             </div>
         </div>
     </div>
