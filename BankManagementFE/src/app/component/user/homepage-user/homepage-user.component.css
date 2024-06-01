@@ -4,9 +4,7 @@
     grid-template-rows: auto auto;
     gap: 20px;
     padding: 20px;
-    font-family: Arial, sans-serif;
-    /* background-color: #f0f2f5; */
-    /* padding: 0; */
+    font-family: "Source Sans Pro", sans-serif;
     padding-top: 10px;
     height: calc(100vh - 97px);
     width: calc(100% - 35px);
@@ -26,19 +24,39 @@
     padding: 20px;
 }
 
-.card {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-}
-
 .transactions {
     margin-left: 20px;
     width: 70%;
 }
 
+.card {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    min-width: 350px;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.card-body {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
 .card-header {
     border-bottom: 1px solid #444;
     margin-bottom: 20px;
+}
+
+.card-home {
+    min-width: 100%;
 }
 
 .card-info {
@@ -51,14 +69,15 @@
     justify-content: space-between;
 }
 
-.card-info p {
-    margin: 5px 0;
-}
-
 .card-number {
-    font-size: 1.5em;
-    letter-spacing: 2px;
-    margin: 10px 0;
+    font-size: 1.7em;
+    letter-spacing: 0.16em;
+    margin: 35px 0px;
+    width: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-actions {
@@ -86,6 +105,10 @@
 .card-actions .transfer-funds {
     margin-right: 5px;
     font-weight: bold;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #c1f04bea, #e0ea1a);
 }
 
@@ -139,6 +162,7 @@
 .transactions-statistics {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    max-width: 100%;
 }
 
 .transactions-statistics .header {
@@ -159,6 +183,13 @@
 }
 
 .transactions-statistics .date-controls button {
+    background-color: #f0f2f5;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.transactions-statistics .date-controls a {
     background-color: #f0f2f5;
     border: none;
     padding: 10px;
@@ -226,3 +257,75 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+
+.credit-card-form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.info-header, .infor-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left, .footer-right{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.footer-left-title, .footer-right-title {
+    font-weight: 500;
+    opacity: 0.8;
+    font-size: 0.9em;
+}
+
+.footer-left-owner, .footer-right-owner {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.card-title {
+    /* font-size: 20px; */
+    font-weight: bold;
+    /* color: #333; */
+  }
+
+.card-logo {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-left: 100px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .navigation button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .navigation button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }

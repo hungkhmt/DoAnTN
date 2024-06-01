@@ -131,6 +131,14 @@ public class TransactionService implements ITransactionService {
         return transactionRepository.findByUserId(id);
     }
 
+    public List<Transaction> findBySourceAccountId(Long id, Integer mounth) {
+        return transactionRepository.findBySourceAccountId(id, mounth);
+    }
+
+    public List<Transaction> findByDestinationAccountId(Long id, Integer mounth) {
+        return transactionRepository.findByDestinationAccountId(id, mounth);
+    }
+
     public Page<Transaction> getByPage(int page, String sortBy, String sortType, String key){
         Sort sort = Sort.by(sortBy);
         sort= sortType.equals("asc")?sort.ascending(): sort.descending();

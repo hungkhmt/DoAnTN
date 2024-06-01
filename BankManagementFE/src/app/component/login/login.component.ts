@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { User } from '../../model/user';
+import { AuthService } from '../../service/auth.service';
+import { AccountService } from '../../service/account.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,9 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private accountService: AccountService) {
     }
 
     userInfo : User | undefined
@@ -36,28 +40,24 @@ export class LoginComponent {
     return this.loginForm.controls['password']
   }
 
-  // loginUser() {
-  //   const { username, password } = this.loginForm.value;
-  //   this.authService.getUserByUsername(username as string).subscribe(
-  //     response => {      
-  //       if (response[0] !== undefined && response[0].password === password) {
-  //         localStorage.setItem('username', username as string);
-  //         localStorage.setItem('role', response[0].role as string);
-  //         localStorage.setItem('name', response[0].name);
-  //         localStorage.setItem('password', response[0].password);
-  //         localStorage.setItem("id", response[0].id);
-  //         localStorage.setItem("isLoggedIn", "true");
-  //         this.isLogin = true;
-  //         this.router.navigate(['']);
-  //       } else {
-  //         localStorage.setItem("isLoggedIn", "true");
-  //         this.isLogin = false;
-  //       }
-  //     }      
-  //   )    
-  // }
-
-  
-  
-  
+  loginUser() {
+    const { username, password } = this.loginForm.value;
+    this.authService.login(username!, password!).subscribe(
+      respone => {
+        let role = this.authService.getRole();
+        if(!role) {
+          this.router.navigate(['/forbidden'])
+          this.isLogin = false;
+        }
+        if(role && role == "ADMIN") {
+          this.isLogin = true;
+          this.router.navigate(['/admin']);
+        } else {
+          this.isLogin = true;
+          this.router.navigate(['/user']);
+        }
+        
+      }
+    )
+  }
 }

@@ -1,6 +1,6 @@
 <main>
     <div class="container">
-        <form action="" [formGroup]="loginForm">
+        <form action="" [formGroup]="loginForm" >
             <div class="modal-img_container">
                 <img src="../../assets/undraw_remotely_2j6y.png" alt="Login img" id="img_login">
             </div>
@@ -34,12 +34,13 @@
                 </div>
                 <div class="modal-loginForm_container login_button">
                     <p style="color: red;" id="nameErrorMessage" *ngIf="!isLogin">Username or password not correct</p>
-                    <button id="btn-login" type="submit">Log In</button>
+                    <button id="btn-login" type="submit" (click)="loginUser()">Sign In</button>
                 </div>
                 <div class="modal-loginForm_container login_footer">    
-                    <p id="footer_content">- or login with -</p>
-                    <i class="fa-brands fa-facebook fa-2xl" id="fb"></i>
-                    <i class="fa-brands fa-google fa-2xl" id="gg"></i>
+                    <p class="footer_content">- If you don't have account -</p>
+                    <div class="modal-loginForm_container login_button">
+                        <button id="btn-login">Sign Up</button>
+                    </div>
                 </div>
                 
             </div>

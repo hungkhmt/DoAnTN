@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { SidebarAdminComponent } from './component/admin/sidebar-admin/sidebar-admin.component';
 import { LoginComponent } from './component/login/login.component';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,11 @@ import { LoginComponent } from './component/login/login.component';
 })
 export class AppComponent {
   title = 'BankManagementFE';
+  constructor(private router: Router, private authService: AuthService) {}
+  ngOnInit() {
+    const token = this.authService.getToken();
+    if (!token) {
+      this.router.navigate(['/registration']);
+    }
+  }
 }

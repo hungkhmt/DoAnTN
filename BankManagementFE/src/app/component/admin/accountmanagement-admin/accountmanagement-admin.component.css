@@ -1,0 +1,40 @@
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    padding: 0 16px;
+  }
+
+  .nav-bar span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+    font-weight: 500;
+    font-size: large;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .mat-elevation-z8 {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .admin_dashboard {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* CSS cho hiệu ứng hover trên các hàng của bảng */
+tr:hover {
+  background-color: #ddd8d8; /* Màu nền khi hover */
+  cursor: pointer; /* Thay đổi con trỏ chuột để chỉ ra có thể tương tác */
+}
+
+/* Nếu bạn muốn thêm hiệu ứng chuyển đổi mượt mà */
+tr {
+  transition: background-color 0.3s ease;
+}
