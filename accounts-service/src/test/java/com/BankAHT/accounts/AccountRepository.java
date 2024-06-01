@@ -26,4 +26,10 @@ public class AccountRepository {
         boolean check= accountRepository.existsById(1234567812L);
         System.out.println(check);
     }
+
+    @Test
+    public void testCountAccountCreateByMonth(){
+        Long number= accountRepository.countAccountsCreatedByMonth(5,2024);
+        System.out.println(number);
+    }
 }

@@ -19,4 +19,8 @@ public interface AccountRepository extends JpaRepository<Accounts,Long> {
     @Query("UPDATE Accounts a SET a.balance = :balance WHERE a.accountId = :accountId ")
     void updateBalanceByAccountIdAndAmount(@Param("accountId") Long accountId, @Param("balance") Long balance);
     boolean existsById(Long id);
+
+    @Query("SELECT COUNT(a) FROM Accounts a WHERE FUNCTION('MONTH', a.createdAt) = :month AND FUNCTION('YEAR', a.createdAt) = :year")
+    Long countAccountsCreatedByMonth(@Param("month") int month, @Param("year") int year);
+
 }
