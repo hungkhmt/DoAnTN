@@ -110,7 +110,7 @@ public class AccountServiceImlp implements IAccountService {
 
     @Override
     public List<AccountDto> getAllAccountByUserId(Long userId) {
-        List<Accounts> accounts = accountRepository.findAllByCustomerId(userId);
+        List<Accounts> accounts = accountRepository.findAllByCustomerIdAndIsActive(userId);
         List<AccountDto> accountDtos = new ArrayList<>();
         for(Accounts accounts1: accounts) {
             accountDtos.add(accountToAccountDTO(accounts1));

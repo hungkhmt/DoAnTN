@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.List;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
@@ -31,5 +33,11 @@ public class AccountRepository {
     public void testCountAccountCreateByMonth(){
         Long number= accountRepository.countAccountsCreatedByMonth(5,2024);
         System.out.println(number);
+    }
+
+    @Test
+    public void testfindAllByCustomerIdAndIsActive(){
+        List<Accounts> listRs= accountRepository.findAllByCustomerIdAndIsActive(1L);
+        System.out.println(listRs.size());
     }
 }
