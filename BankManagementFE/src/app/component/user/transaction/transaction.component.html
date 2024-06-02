@@ -1,7 +1,7 @@
 <!-- Transfer Page Component -->
 <div class="transfer-container">
   <div class="transfer-body">
-    <form class="transfer-form" [formGroup]="tranferForm">
+    
       <mat-card class="account-info">
         <div class="account-number">
           <div class="account-id">{{accountId}}</div>
@@ -11,7 +11,7 @@
         <div class="balance">{{formattedBalance}} VND</div>
         <button class="dropdown-button"><i class='bx bx-chevron-down'></i></button>
       </mat-card>
-
+    <form class="transfer-form" [formGroup]="tranferForm">
       <mat-form-field subscriptSizing="dynamic" appearance="fill">
         <mat-label>Tài khoản đích</mat-label>
         <input matInput placeholder="Nhập số tài khoản" formControlName="destinationAccountId">

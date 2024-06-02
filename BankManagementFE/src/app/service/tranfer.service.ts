@@ -9,12 +9,13 @@ import { AuthService } from './auth.service';
 
 export class TranferService {
     url = 'http://localhost:8888/api/v1/transaction';
+    
 
     constructor(private http: HttpClient, private authService: AuthService) {}
 
     tranferMoney(data: any): Observable<any> {
       const headers = this.authService.getAuthHeaders();
-      return this.http.post<any>(this.url.concat('/tranfer'), data, {headers});
+      return this.http.post<any>(this.url.concat('/transfer'), data, {headers});
     }
 
     withDraw(data: any): Observable<any> {
@@ -30,6 +31,12 @@ export class TranferService {
     getAllTransaction(accId: any): Observable<any> {
       const headers = this.authService.getAuthHeaders();
       return this.http.get(`${this.url.concat('/transaction-by-accountId')}/${accId}`, {headers});
+    }
+
+    getAllTransactionByMonth(month: any): Observable<any> {
+      const headers = this.authService.getAuthHeaders();
+      let params = new HttpParams().set('month', month);
+      return this.http.get(this.url.concat('/listAllTransaction'), {params, headers});
     }
 
     getAllTransactionSourceId(accId: any, mounth: number): Observable<any> {

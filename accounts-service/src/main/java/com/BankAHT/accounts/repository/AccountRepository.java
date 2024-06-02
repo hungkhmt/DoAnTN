@@ -11,6 +11,9 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface AccountRepository extends JpaRepository<Accounts,Long> {
+    @Query(value = "SELECT * FROM Accounts t WHERE MONTH(t.created_at) = :month", nativeQuery = true)
+    List<Accounts> findAllByMonth(@Param("month") int month);
+
     @Query("SELECT a.customerId FROM Accounts a WHERE a.accountId = :accountId")
     Long findCustomerIdByAccountId(@Param("accountId") Long accountId);
     List<Accounts> findAllByCustomerId(Long customerId);

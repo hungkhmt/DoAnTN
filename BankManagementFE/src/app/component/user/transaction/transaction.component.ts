@@ -74,18 +74,19 @@ export class TransactionComponent implements OnInit {
     delete formValue.destinationAccountName;
 
     formValue.sourceAccountId = this.accountId!;
-    console.log(formValue);
     this.tranferService.tranferMoney(formValue).subscribe({
       next: (val: any) => {
-        // this.tranferForm.clearValidators;
         alert("Tranfer Successful");
         this.getAccountByAccId();
-        this.tranferForm.reset();
+        console.log("tranfer ok");
       },
       error: (err: any) => {
+        alert("Giao dịch không thành công!!!");
         console.log(err);
       }
     });
+
+    this.tranferForm.reset();
   }
 
   getUserByUserId() {

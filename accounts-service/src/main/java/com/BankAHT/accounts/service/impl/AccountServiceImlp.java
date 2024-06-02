@@ -108,6 +108,16 @@ public class AccountServiceImlp implements IAccountService {
     }
 
     @Override
+    public List<AccountDto> getAllAccountByMonth(Integer month) {
+        List<Accounts> accounts = accountRepository.findAllByMonth(month);
+        List<AccountDto> accountDtos = new ArrayList<>();
+        for(Accounts accounts1: accounts) {
+            accountDtos.add(accountToAccountDTO(accounts1));
+        }
+        return accountDtos;
+    }
+
+    @Override
     public List<AccountDto> getAllAccountByUserId(Long userId) {
         List<Accounts> accounts = accountRepository.findAllByCustomerId(userId);
         List<AccountDto> accountDtos = new ArrayList<>();

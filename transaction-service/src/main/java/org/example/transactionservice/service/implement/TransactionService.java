@@ -55,13 +55,9 @@ public class TransactionService implements ITransactionService {
         transaction.setTransactionDate(LocalDateTime.now());
         transaction.setDescription(transferDto.getDescription());
 
-
-
-//        for(int i=0;i<10;i++){
-            transactionRepository.save(transaction);
-            bankAccountService.updateAccountBalance(transferDto.getSourceAccountId(), -transferDto.getAmount());
-            bankAccountService.updateAccountBalance(transferDto.getDestinationAccountId(), transferDto.getAmount());
-//        }
+        transactionRepository.save(transaction);
+        bankAccountService.updateAccountBalance(transferDto.getSourceAccountId(), -transferDto.getAmount());
+        bankAccountService.updateAccountBalance(transferDto.getDestinationAccountId(), transferDto.getAmount());
         return transaction;
     }
 
@@ -113,8 +109,8 @@ public class TransactionService implements ITransactionService {
     }
 
     @Override
-    public List<Transaction> findAll() {
-        return transactionRepository.findAll();
+    public List<Transaction> findAllByMonth(Integer mounth) {
+        return transactionRepository.findAllByMonth(mounth);
     }
 
     @Override

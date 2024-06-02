@@ -11,6 +11,8 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Long> , PagingAndSortingRepository<Transaction, Long> {
+    @Query(value = "SELECT * FROM Transaction t WHERE MONTH(t.transaction_date) = :month", nativeQuery = true)
+    List<Transaction> findAllByMonth(@Param("month") int month);
 
     @Query("SELECT tr FROM Transaction tr WHERE tr.sourceAccountId =:id OR tr.destinationAccountId =:id")
     List<Transaction> findByIdAccounts(Long id);

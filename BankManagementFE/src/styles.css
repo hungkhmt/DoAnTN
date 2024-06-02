@@ -26,5 +26,5 @@
     --twitter-color: #1DA1F2;
     --insta-color: #E1306C;
   }
-html, body { height: 100%; }
+html, body { height: 100%; background-color: #EEEEEE;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

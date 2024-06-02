@@ -1,6 +1,7 @@
 package org.example.transactionservice.service;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.example.transactionservice.dto.transaction.MessageUpdateBalanceTransaction;
 import org.example.transactionservice.repository.MessageTransactionRepository;
 import org.slf4j.Logger;
@@ -15,14 +16,14 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Component
+@RequiredArgsConstructor
 public class PollingService {
 
     private Logger logger= LoggerFactory.getLogger(PollingService.class);
-    @Autowired
-    private KafkaTemplate<String,Object> kafkaTemplate;
 
-    @Autowired
-    private MessageTransactionRepository messageTransactionRepository;
+    private final KafkaTemplate<String,Object> kafkaTemplate;
+
+    private final MessageTransactionRepository messageTransactionRepository;
 
     @Transactional
     @Scheduled(fixedDelay = 1000)

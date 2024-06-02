@@ -9,14 +9,13 @@ import java.util.List;
 public interface IAccountService {
     Accounts createAccount(AccountDto accountDto);
     AccountDto fetchAccount(Long accountNumber);
-    public List<AccountDto> getAllAccountByUserId(Long userId);
+    List<AccountDto> getAllAccountByUserId(Long userId);
+    List<AccountDto> getAllAccountByMonth(Integer month);
     boolean updateAccount(AccountDto accountDto);
-
     void updateBalance(Long idAccount,Long amount);
     public List<AccountDto> getAllAccount();
     boolean deleteAccount(Long accountNumber);
     void enableAccount(Long accountNumber);
     void producerMessageUpdateAccountTransaction(MessageUpdateAccount messageUpdateAccount);
-    public Long getUserIdByAccountId(Long accountId);
-
+    Long getUserIdByAccountId(Long accountId);
 }

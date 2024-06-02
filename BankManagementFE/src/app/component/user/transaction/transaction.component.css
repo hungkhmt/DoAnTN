@@ -3,8 +3,14 @@
   display: flex;
   justify-content: center;
   align-self: center;
-  height: calc(100vh - 97px);
-  width: calc(100% - 35px);
+  width: 97%;
+  height: 98%;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #26b5ed, #f5eeff);
 }
 
 .transfer-body {
@@ -15,6 +21,7 @@
   border: 1px solid #ccc;
   border-radius: 5px; /* Viền bo tròn */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+  background-color: #fff;
   /* background-color: linear-gradient(135deg, #6e00ff, #ff00c3); */
 }
 
@@ -85,11 +92,14 @@ mat-form-field {
 }
 
 .confirmButton {
-  margin-top: 10px;
-  background-color: sandybrown;
+  margin-top: 20px;
+  background-color: #1E3DE8;
   height: 30px;
   border: none;
-  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 10px;
   cursor: pointer;
 }
 

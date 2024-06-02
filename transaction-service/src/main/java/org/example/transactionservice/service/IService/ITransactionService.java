@@ -19,7 +19,7 @@ public interface ITransactionService {
 
     // function handle deposit money
     Transaction deposit(DepositDto depositDto) throws Exception;
-    List<Transaction> findAll();
+    List<Transaction> findAllByMonth(Integer mounth);
 
 
     List<Transaction> findByIdAccounts(Long id);
