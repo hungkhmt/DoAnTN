@@ -17,9 +17,19 @@ public interface AccountRepository extends JpaRepository<Accounts,Long> {
     @Query("SELECT a.customerId FROM Accounts a WHERE a.accountId = :accountId")
     Long findCustomerIdByAccountId(@Param("accountId") Long accountId);
     List<Accounts> findAllByCustomerId(Long customerId);
+
+
+    @Query("SELECT a FROM Accounts a WHERE a.status != 'PENDING' AND a.customerId =:customerId")
+    List<Accounts> findAllByCustomerIdAndIsActive(@Param("customerId") Long customerId);
+
+
     @Transactional
     @Modifying
     @Query("UPDATE Accounts a SET a.balance = :balance WHERE a.accountId = :accountId ")
     void updateBalanceByAccountIdAndAmount(@Param("accountId") Long accountId, @Param("balance") Long balance);
     boolean existsById(Long id);
+
+    @Query("SELECT COUNT(a) FROM Accounts a WHERE FUNCTION('MONTH', a.createdAt) = :month AND FUNCTION('YEAR', a.createdAt) = :year")
+    Long countAccountsCreatedByMonth(@Param("month") int month, @Param("year") int year);
+
 }

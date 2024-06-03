@@ -4,6 +4,7 @@ import com.BankAHT.accounts.dto.AccountDto;
 import com.BankAHT.accounts.dto.MessageUpdateAccount;
 import com.BankAHT.accounts.entity.Accounts;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IAccountService {
@@ -18,4 +19,6 @@ public interface IAccountService {
     void enableAccount(Long accountNumber);
     void producerMessageUpdateAccountTransaction(MessageUpdateAccount messageUpdateAccount);
     Long getUserIdByAccountId(Long accountId);
+    public Long getUserIdByAccountId(Long accountId);
+    public HashMap<Integer,Long> accountCreationStatistics();
 }
