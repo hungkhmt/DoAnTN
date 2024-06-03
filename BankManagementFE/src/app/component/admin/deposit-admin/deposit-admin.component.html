@@ -5,11 +5,7 @@
     <form>
       <mat-form-field appearance="fill">
         <mat-label>Account number</mat-label>
-        <mat-select>
-          <mat-option value="1">123456789</mat-option>
-          <mat-option value="2">987654321</mat-option>
-          <!-- Thêm các số tài khoản khác tại đây -->
-        </mat-select>
+        <input matInput placeholder="Enter Account number" required>
       </mat-form-field>
   
       <mat-form-field appearance="fill">
@@ -29,8 +25,13 @@
           <mat-option value="savings">Saving</mat-option>
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field subscriptSizing="dynamic" appearance="fill">
+        <mat-label>Nội dung nạp tiền</mat-label>
+        <textarea matInput placeholder="Nội dung nạp tiền" formControlName="description"></textarea>
+      </mat-form-field>
   
-      <div class="footer-button">
+      <div class="confirmButton">
         <button>Send</button>
       </div>
       
