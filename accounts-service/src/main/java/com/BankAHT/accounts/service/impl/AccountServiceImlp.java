@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
@@ -119,7 +120,7 @@ public class AccountServiceImlp implements IAccountService {
 
     @Override
     public List<AccountDto> getAllAccountByUserId(Long userId) {
-        List<Accounts> accounts = accountRepository.findAllByCustomerId(userId);
+        List<Accounts> accounts = accountRepository.findAllByCustomerIdAndIsActive(userId);
         List<AccountDto> accountDtos = new ArrayList<>();
         for(Accounts accounts1: accounts) {
             accountDtos.add(accountToAccountDTO(accounts1));
@@ -203,6 +204,15 @@ public class AccountServiceImlp implements IAccountService {
                 .balance(accounts.getBalance())
                 .createdAt(accounts.getCreatedAt())
                 .build();
+    }
+
+    public HashMap<Integer,Long> accountCreationStatistics(){
+        HashMap<Integer,Long> map= new HashMap<>();
+        for(int i=1;i<=12;i++){
+            Long numberAccountCreate= accountRepository.countAccountsCreatedByMonth(i,2024);
+            map.put(i,numberAccountCreate);
+        }
+        return map;
     }
 
 }
