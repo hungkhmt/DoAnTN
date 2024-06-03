@@ -46,6 +46,11 @@ public class AccountController {
         return accountService.getAllAccountByUserId(userId);
     }
 
+    @GetMapping("/month")
+    public List<AccountDto> getAllAccountByMonth(@RequestParam Integer month) {
+        return accountService.getAllAccountByMonth(month);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> createAccount(@RequestBody AccountDto accountDto, @RequestHeader("Authorization") String token){
         Long userId = accountDto.getCustomerId();

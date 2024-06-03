@@ -5,11 +5,13 @@ import { RouterModule, Router } from '@angular/router';
 import { AccountService } from '../../../service/account.service';
 import { AuthService } from '../../../service/auth.service';
 import { UserService } from '../../../service/user.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-account',
   standalone: true,
   imports: [CommonModule, RouterModule],
+  providers: [DecimalPipe],
   templateUrl: './account.component.html',
   styleUrl: './account.component.css',
   encapsulation: ViewEncapsulation.None
@@ -18,12 +20,14 @@ export class AccountComponent implements AfterViewInit{
   accounts: Account[] = [];
   userId = this.authService.getUserId();
   fullname: string | undefined;
+  formattedBalance: string | undefined;
 
   constructor(private accountService: AccountService, private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.accountService.getAllAccountByUserId(this.userId).subscribe((data: any[]) => {
       this.accounts = data;
+      console.log("lor", this.accounts);
     });
     this.getUserByUserId();
   }

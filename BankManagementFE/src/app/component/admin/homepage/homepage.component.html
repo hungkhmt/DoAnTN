@@ -1,39 +1,80 @@
-<div class="card-container">
-  <div class="card card-1">
-    <div class="card-icon">
-      <i class='bx bxs-group'></i>
+<div class="container">
+  <div class="card-container">
+    <div class="card card-1">
+      <div class="card-icon">
+        <i class='bx bxs-group'></i>
+      </div>
+      <div class="card-info">
+        <div class="card-amount">8,120</div>
+        <div class="card-label">ALL USER</div>
+      </div>
+      <div class="card-button">
+        <i class='bx bx-chevron-right'></i>
+      </div>
     </div>
-    <div class="card-info">
-      <div class="card-amount">8,120</div>
-      <div class="card-label">ALL USER</div>
+    <div class="card card-2">
+      <div class="card-icon">
+        <i class='bx bx-transfer' ></i>
+      </div>
+      <div class="card-info">
+        <div class="card-amount">11,250</div>
+        <div class="card-label">TRANSACTION</div>
+      </div>
+      <div class="card-button">
+        <i class='bx bx-chevron-right'></i>
+      </div>
+    </div>
+    <div class="card card-3">
+      <div class="card-icon">
+        <i class='bx bxs-user-account'></i>
+      </div>
+      <div class="card-info">
+        <div class="card-amount">15,228</div>
+        <div class="card-label">ALL ACCOUNT</div>
+      </div>
+      <div class="card-button">
+        <i class='bx bx-chevron-right'></i>
+      </div>
+    </div>
+    <div class="card card-4">
+      <div class="card-icon">
+        <i class='bx bx-user-plus'></i>
+      </div>
+      <div class="card-info">
+        <div class="card-amount">20</div>
+        <div class="card-label">PENDING ACCOUNT</div>
+      </div>
+      <div class="card-button">
+        <i class='bx bx-chevron-right'></i>
+      </div>
     </div>
   </div>
-  <div class="card card-2">
-    <div class="card-icon">
-      <i class='bx bx-transfer' ></i>
+  <div class="transactions-statistics">
+    <div class="header">
+        <div class="title">Transactions Statistics</div>
+        <div class="date-controls">
+            <div class="date-controls">
+                <button (click)="setPreviousMonthTrans()">Previous Month</button>
+                <button (click)="setNextMonthTrans()">Next Month</button>
+            <div class="date-picker-trans">March 2023</div>
+            </div>
+        </div>
     </div>
-    <div class="card-info">
-      <div class="card-amount">11,250</div>
-      <div class="card-label">TRANSACTION</div>
-    </div>
+    <div class="line-chart" [chart]="lineChart"></div>
   </div>
-  <div class="card card-3">
-    <div class="card-icon">
-      <i class='bx bxs-user-account'></i>
+  <div class="transactions-statistics">
+    <div class="header">
+        <div class="title">Transactions Statistics</div>
+        <div class="date-controls">
+            <div class="date-controls">
+                <button (click)="setPreviousMonthAcc()">Previous Month</button>
+                <button (click)="setNextMonthAcc()">Next Month</button>
+            <div class="date-picker-accs">March 2023</div>
+            </div>
+        </div>
     </div>
-    <div class="card-info">
-      <div class="card-amount">15,228</div>
-      <div class="card-label">ALL ACCOUNT</div>
-    </div>
-  </div>
-  <div class="card card-4">
-    <div class="card-icon">
-      <i class='bx bx-user-plus'></i>
-    </div>
-    <div class="card-info">
-      <div class="card-amount">20</div>
-      <div class="card-label">PENDING ACCOUNT</div>
-    </div>
+    <div class="line-chart" [chart]="lineChart2"></div>
   </div>
 </div>
+
 

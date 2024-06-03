@@ -1,6 +1,8 @@
 package org.example.transactionservice.service.implement;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.transactionservice.dto.transaction.MessageUpdateBalanceTransaction;
 import org.example.transactionservice.exception.AccountIsNotValidException;
 import org.example.transactionservice.exception.ResourceNoFoundException;
@@ -18,19 +20,18 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BankAccountService implements IBankAccountService {
 
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
     private final BankAccountRepository bankAccountRepository;
-    private Logger logger= LoggerFactory.getLogger(BankAccountService.class);
 
-    @Autowired
-    private MessageTransactionRepository messageUpdateBalanceRepository;
+    private final MessageTransactionRepository messageUpdateBalanceRepository;
 
-    public BankAccountService(KafkaTemplate<String, Object> kafkaTemplate, BankAccountRepository bankAccountRepository){
-        this.kafkaTemplate= kafkaTemplate;
-        this.bankAccountRepository=bankAccountRepository;
-    }
+//    public BankAccountService(KafkaTemplate<String, Object> kafkaTemplate, BankAccountRepository bankAccountRepository){
+//        this.kafkaTemplate= kafkaTemplate;
+//        this.bankAccountRepository=bankAccountRepository;
+//    }
 
 
     @Override

@@ -126,28 +126,6 @@ export class HomepageUserComponent {
     });
   }
 
-  getUserByAccId() {
-    this.accountService.getUserByAccId(9991).subscribe({
-      next: (respone: any) => {
-        this.fullname = respone.fullname;
-      },
-      error: (err: any) => {
-        console.log("Error: ", err);
-      }
-    })
-  }
-
-  getAccountByAccId() {
-    this.accountService.getAccountByAccId(9991).subscribe({
-      next: (respone: any) => {
-        this.type = respone.accountType;
-      },
-      error: (err: any) => {
-        console.log("Error: ", err);
-      }
-    })
-  }
-
   getTransactionApi(month: number) {
     this.transactionService.getAllTransactionSourceId(this.accId, month).subscribe(transactions1 => {
       this.transactionService.getAllTransactionDestinationId(this.accId, month).subscribe(transactions2 => {

@@ -1,6 +1,20 @@
+.container {
+  /* background-color: aquamarine; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 97%;
+  height: fit-content;
+  border-radius: 10px;
+  display: flex;
+  margin-top: 230px;
+  flex-direction: column;
+}
 .card-container {
     display: flex;
     justify-content: space-around;
+    /* padding-top: 20px; */
     /* margin-top: 20px; */
   }
   
@@ -13,6 +27,7 @@
     overflow: hidden;
     margin: 10px;
     background-color: #fff;
+    justify-content: space-between;
   }
   
   .card-icon {
@@ -59,4 +74,97 @@
   .card-link {
     cursor: pointer;
   }
-  
+
+.card .card-button {
+  display: flex;
+  width: 30px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.card-button .bx {
+  font-size: 30px;
+}
+
+.card-button:hover {
+  background-color: #e0e0e0;
+}
+
+.transactions-statistics {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 70%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.transactions {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.transactions {
+  margin-left: 20px;
+  width: 90%;
+}
+
+.transactions {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.transactions-statistics .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.transactions-statistics .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.transactions-statistics .date-controls {
+  display: flex;
+  align-items: center;
+}
+
+.transactions-statistics .date-controls button {
+  background-color: #e3e5e9;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-weight: 400;
+}
+
+.transactions-statistics .date-controls a {
+  background-color: #e3e5e9;
+  border: none;
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.transactions-statistics .date-controls .date-picker-trans,
+.transactions-statistics .date-controls .date-picker-accs {
+  background-color: #e3e5e9;
+  padding: 8px;
+  margin-left: 10px;
+}
+
+.transactions-statistics .line-chart {
+  width: 100%;
+  /* height: 30%; */
+  /* max-height: 27%; */
+
+  background-color: #ddd;
+}

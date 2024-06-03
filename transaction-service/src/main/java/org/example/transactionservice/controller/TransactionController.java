@@ -57,8 +57,8 @@ public class TransactionController {
     }
 
     @GetMapping("/listAllTransaction")
-    public ResponseEntity<?> listAllTransaction() {
-        List<Transaction> listTransaction= transactionService.findAll();
+    public ResponseEntity<?> listAllTransaction(@RequestParam Integer month) {
+        List<Transaction> listTransaction= transactionService.findAllByMonth(month);
             return ResponseEntity.status(HttpStatus.OK).body(listTransaction);
     }
 

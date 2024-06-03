@@ -3,56 +3,56 @@
 
 <div class="container">
     <div class="slide">
-        <div class="item" *ngIf="accounts && accounts.length > 0" style="background-image: url(https://i.ibb.co/qCkd9jS/img1.jpg);">
+        <div class="item" *ngIf="accounts && accounts.length > 0" style="background-image: url(../../../../assets/day39-pc.png);">
             <div class="content">
-                <div class="name" id="accountId">{{accounts[0].accountId}}</div>
+                <div class="accId" id="accountId">{{accounts[0].accountId}}</div>
                 <div class="name">{{fullname}}</div>
-                <div class="des">Số dư: {{accounts[0].balance}}</div>
+                <div class="balance">Số dư: {{accounts[0].balance}} VNĐ</div>
                 <!-- <div class="des">Hạn mức: {{spendLimit}}</div> -->
                 <div class="des">Ngày tạo: {{accounts[0].createdAt}}</div>
                 <div class="des">Trạng thái: {{accounts[0].accountStatus}}</div>
-                <button [routerLink]="['/user/transaction']">Transaction</button>
+                <button class="button-transfer" [routerLink]="['/user/transaction']">Transaction</button>
             </div>
         </div>
-        <div class="item" *ngIf="accounts && accounts.length > 1" style="background-image: url(https://i.ibb.co/NSwVv8D/img3.jpg);">
+        <div class="item" *ngIf="accounts && accounts.length > 1" style="background-image: url(../../../../assets/day40-powerbook-100.png);">
             <div class="content">
-                <div class="name" id="accountId">{{accounts[1].accountId}}</div>
+                <div class="accId" id="accountId">{{accounts[1].accountId}}</div>
                 <div class="name">{{fullname}}</div>
-                <div class="des">Số dư: {{accounts[1].balance}}</div>
+                <div class="balance">Số dư: {{accounts[1].balance}} VNĐ</div>
                 <!-- <div class="des">Hạn mức: {{spendLimit}}</div> -->
                 <div class="des">Ngày tạo: {{accounts[1].createdAt}}</div>
                 <div class="des">Trạng thái: {{accounts[1].accountStatus}}</div>
-                <button [routerLink]="['/user/transaction']">Transaction</button>
+                <button class="button-transfer" [routerLink]="['/user/transaction']">Transaction</button>
             </div>
         </div>
-        <div class="item" *ngIf="accounts && accounts.length > 2" style="background-image: url(https://i.ibb.co/Bq4Q0M8/img4.jpg);">
+        <div class="item" *ngIf="accounts && accounts.length > 2" style="background-image: url(../../../../assets/day42-imac.png);">
             <div class="content">
-                <div class="name" id="accountId">{{accounts[2].accountId}}</div>
+                <div class="accId" id="accountId">{{accounts[2].accountId}}</div>
                 <div class="name">{{fullname}}</div>
-                <div class="des">Số dư: {{accounts[2].balance}}</div>
+                <div class="balance">Số dư: {{accounts[2].balance}} VNĐ</div>
                 <div class="des">Ngày tạo: {{accounts[2].createdAt}}</div>
                 <div class="des">Trạng thái: {{accounts[2].accountStatus}}</div>
-                <button [routerLink]="['/user/transaction']">Transaction</button>
+                <button class="button-transfer" [routerLink]="['/user/transaction']">Transaction</button>
             </div>
         </div>
-        <div class="item" *ngIf="accounts && accounts.length > 3" style="background-image: url(https://i.ibb.co/RNkk6L0/img6.jpg);">
+        <div class="item" *ngIf="accounts && accounts.length > 3" style="background-image: url(../../../../assets/day44-hdd.png); background-size: cover;">
             <div class="content">
-                <div class="name" id="accountId">{{accounts[3].accountId}}</div>
+                <div class="accId" id="accountId">{{accounts[3].accountId}}</div>
                 <div class="name">{{fullname}}</div>
-                <div class="des">Số dư: {{accounts[3].balance}}</div>
+                <div class="balance">Số dư: {{accounts[3].balance}} VNĐ</div>
                 <div class="des">Ngày tạo: {{accounts[3].createdAt}}</div>
                 <div class="des">Trạng thái: {{accounts[3].accountStatus}}</div>
-                <button [routerLink]="['/user/transaction']">Transaction</button>
+                <button class="button-transfer" [routerLink]="['/user/transaction']">Transaction</button>
             </div>
         </div>
         <div class="item" *ngIf="accounts && accounts.length > 4" style="background-image: url(https://i.ibb.co/jTQfmTq/img5.jpg);">
             <div class="content">
-                <div class="name" id="accountId">{{accounts[4].accountId}}</div>
+                <div class="accId" id="accountId">{{accounts[4].accountId}}</div>
                 <div class="name">{{fullname}}</div>
-                <div class="des">Số dư: {{accounts[4].balance}}</div>
+                <div class="balance">Số dư: {{accounts[4].balance}} VNĐ</div>
                 <div class="des">Ngày tạo: {{accounts[4].createdAt}}</div>
                 <div class="des">Trạng thái: {{accounts[4].accountStatus}}</div>
-                <button [routerLink]="['/user/transaction']">Transaction</button>
+                <button class="button-transfer" [routerLink]="['/user/transaction']">Transaction</button>
             </div>
         </div>
     </div>

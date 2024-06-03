@@ -41,6 +41,12 @@ export class AccountService {
         // );
     }
 
+    getAllAccountByMonth(month: any): Observable<any> {
+      const headers = this.authService.getAuthHeaders();
+      let params = new HttpParams().set('month', month);
+      return this.http.get(this.url.concat('/month'), {params, headers});
+    }
+
     getUserByAccId(accId: any): Observable<any>{
       const headers = this.authService.getAuthHeaders();
       return this.http.get<any>(`${this.url.concat('/user_infor')}/${accId}`, {headers})
