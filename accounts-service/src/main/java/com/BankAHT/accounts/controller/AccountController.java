@@ -96,6 +96,12 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.OK).body("Create account Success !");
     }
 
+    @GetMapping("/ad/account-Creation-Statistics")
+    public ResponseEntity<?> getAccountCreationStatistics( @RequestHeader("Authorization") String token){
+
+        return ResponseEntity.status(HttpStatus.OK).body(accountService.accountCreationStatistics());
+    }
+
     @PutMapping("/update")
     public ResponseEntity<?> updateAccount(@RequestBody AccountDto accountDto){
         accountService.updateAccount(accountDto);
