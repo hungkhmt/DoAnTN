@@ -26,6 +26,10 @@ export class HomepageComponent {
   accIdStr: string | undefined;
   userId = this.authService.getUserId();
   listAcc: any[] | undefined;
+  totalUser: any;
+  totalTrans: any;
+  totalAcc: any;
+  totalPendingAcc: any;
 
   monthTrans: number | undefined;
   monthAccs: number | undefined;
@@ -41,6 +45,10 @@ export class HomepageComponent {
     this.setCurrentMonthAccs();
     this.getTransactionApi(this.monthTrans!);
     this.getAccountApi(this.monthAccs!);
+    this.getTotalUser();
+    this.getTotalTransaction();
+    this.getTotalAccount();
+    this.getTotalAccountPending();
   }
 
   updateChartTransactionData(transactions: Transaction[]) {
@@ -294,5 +302,37 @@ export class HomepageComponent {
       alert("Invalid month!!!");
     }
     
+  }  
+
+  getTotalUser() {
+    this.userService.getTotalUser().subscribe({
+      next: (res) => {
+        this.totalUser = res.result;
+      }
+    })
+  }
+
+  getTotalTransaction() {
+    this.transactionService.getTotalTransaction().subscribe({
+      next: (res) => {
+        this.totalTrans = res.result;
+      }
+    })
+  }
+
+  getTotalAccount() {
+    this.accountService.getTotalAccount().subscribe({
+      next: (res) => {
+        this.totalAcc = res.result;
+      }
+    })
+  }
+
+  getTotalAccountPending() {
+    this.accountService.getTotalAccountPending().subscribe({
+      next: (res) => {
+        this.totalPendingAcc = res.result;
+      }
+    })
   }
 }

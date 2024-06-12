@@ -45,10 +45,10 @@
       <ng-container matColumnDef="action" class="row-content">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" (click)="openEnableForm(element.accountId)">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button mat-icon-button color="warn" (click)="deleteAcc(element.accountId)">
                 <mat-icon>delete</mat-icon>
             </button>
         </td>

@@ -1,0 +1,66 @@
+<!-- Profile Card Component -->
+<!-- <div class="profile-card" mat-elevation-z4>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Thông Tin Cá Nhân</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="user" class="profile-content">
+            <p class="row-content"><strong>Fullname:</strong> {{ user.fullname }}</p>
+            <p class="row-content"><strong>Date Of Birth:</strong> {{ user.dateOfBirth }} </p>
+            <p class="row-content"><strong>Phone Number:</strong> {{ phoneNumber }}</p>
+            <p class="row-content"><strong>Address:</strong> {{ user.address }}</p>
+            <p class="row-content"><strong>Username:</strong> {{ user.username }}</p>
+            <p class="row-content"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="row-content"><strong>Created At:</strong> {{ user.created_at }}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="button-card profile-button">Thay Đổi Hồ Sơ</button>
+        <button class="button-card password-button">Thay Đổi Mật Khẩu</button>
+      </mat-card-actions>
+    </mat-card>
+</div> -->
+
+<div class="container">
+  <div class="container-profile">
+    <div class="profile">
+        <img src="../../../assets/day92-freelancing.png" alt="Avatar" class="avatar">
+        <h2>Ramesh</h2>
+        <p>I'm, Software engineer in a MNC, im really nice guy, introvert for communication.<br>good at programming.</p>
+        <p>I'm, Software engineer in a MNC, im really nice guy, introvert for communication.<br>good at programming.</p>
+        <button class="update-button" (click)="openEditButton()">Thay Đổi Hồ Sơ</button>
+        <button class="update-button" (click)="openChangePasswordForm()">Đổi Mật Khẩu</button>
+    </div>
+    <div class="personal-info">
+        <h3>Personal Information</h3>
+        <div *ngIf="user" class="personal-content">
+          <p class="info-title"><strong>Fullname:</strong></p>
+          <p class="info-content">{{ user.fullname }}</p>
+          <p class="info-title"><strong>Date Of Birth:</strong></p>
+          <p class="info-content">{{ user.dateOfBirth }}</p>
+          <p class="info-title"><strong>Phone Number:</strong></p>
+          <p class="info-content">{{ phoneNumber }}</p>
+          <p class="info-title"><strong>Address:</strong></p>
+          <p class="info-content">{{ user.address }}</p>
+          <p class="info-title"><strong>Username:</strong></p>
+          <p class="info-content">{{ user.username }}</p>
+          <p class="info-title"><strong>Email:</strong></p>
+          <p class="info-content">{{ user.email }}</p>
+          <p class="info-title"><strong>Created At:</strong></p>
+          <p class="info-content">{{ user.created_at }}</p>
+        </div>
+        
+    </div>
+    <div class="review">
+        <div class="review-header">
+            <h4>John Smith</h4>
+            <span class="rating">★★★★☆</span>
+        </div>
+        <p>Lorem Ipsum is simply dummy text of the printing It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+    </div>
+  </div>
+</div>
+
+
+  

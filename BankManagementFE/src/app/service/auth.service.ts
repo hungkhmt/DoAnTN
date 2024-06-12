@@ -70,7 +70,7 @@ export class AuthService {
     return null;
   }
 
-  getUserId(): number | null {
+  getUserId(): any {
     const token = this.getToken();
     if (token) {
       const decodedToken: any = jwtDecode(token);

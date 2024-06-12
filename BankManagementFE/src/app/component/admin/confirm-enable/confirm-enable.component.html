@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+    <h2>Enable Account</h2>
+</div>
+<form [formGroup]="accountForm">
+    <div mat-dialog-content>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Account Id</mat-label>
+                <input matInput formControlName="accountId">
+            </mat-form-field>
+        </div>
+    </div>
+</form>
+
+<div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onFormSubmit()">Enable</button>
+</div>

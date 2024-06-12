@@ -6,7 +6,7 @@ import { DepositAdminComponent } from './component/admin/deposit-admin/deposit-a
 import { WithdrawAdminComponent } from './component/admin/withdraw-admin/withdraw-admin.component';
 import { UsermanagementAdminComponent } from './component/admin/usermanagement-admin/usermanagement-admin.component';
 import { TransactionAdminComponent } from './component/admin/transaction-admin/transaction-admin.component';
-import { ProfileComponent } from './component/profile/profile.component';
+import { ProfileComponent } from './component/user/profile/profile.component';
 import { HomepageComponent } from './component/admin/homepage/homepage.component';
 import { HomepageUserComponent } from './component/user/homepage-user/homepage-user.component';
 import { authGuard } from './auth.guard';
@@ -47,15 +47,7 @@ export const routes: Routes = [
         {
           path: 'account',
           component: AccountmanagementAdminComponent
-        },
-        {
-          path: 'transaction',
-          component: TransactionAdminComponent,
-        },
-        {
-          path: 'profile',
-          component: ProfileComponent,
-        },
+        }
       ],
       title: 'AdminDashboard',
       // canActivate: [authGuard],

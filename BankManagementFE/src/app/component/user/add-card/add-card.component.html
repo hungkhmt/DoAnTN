@@ -1,0 +1,19 @@
+<div mat-dialog-title>
+    <h2>Create Account Form</h2>
+</div>
+<form [formGroup]="cardForm">
+    <div mat-dialog-content>
+        <div>
+            <mat-radio-group aria-label="Select an option" formControlName="accountType">
+                <mat-label><b>Type</b></mat-label>
+                <mat-radio-button value="SAVINGS">SAVINGS</mat-radio-button>
+                <mat-radio-button value="CHECKOUT">CHECKOUT</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+</form>
+
+<div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onFormSubmit()">Create</button>
+</div>

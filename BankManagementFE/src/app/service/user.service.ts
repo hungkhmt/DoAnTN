@@ -30,14 +30,25 @@ export class UserService {
       return this.http.post<any>(this.url.concat('/ad'), data, {headers});
     }
 
-    editUser(id: any, data: any): Observable<any>{
+    editUser(data: any): Observable<any>{
       const headers = this.authService.getAuthHeaders();
-      return this.http.put<any>(`${this.url}/${id}`, data, {headers});
+      return this.http.put<any>(this.url, data, {headers});
+    }
+
+    changePassword(data: any): Observable<any>{
+      let id = this.authService.getUserId();
+      const headers = this.authService.getAuthHeaders();
+      return this.http.put<any>(this.url.concat('/password/' + id), data, {headers});
     }
 
     disableUser(id: any): Observable<any>{
       const headers = this.authService.getAuthHeaders();
       return this.http.delete(`${this.url}/${id}`, {headers});
+    }
+
+    getTotalUser(): Observable<any>{
+      const headers = this.authService.getAuthHeaders();
+      return this.http.get(this.url.concat('/total'), {headers});
     }
 
     registration(data: any): Observable<any>{

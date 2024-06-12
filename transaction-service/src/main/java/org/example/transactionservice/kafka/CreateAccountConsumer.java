@@ -32,12 +32,7 @@ public class CreateAccountConsumer {
             groupId = "myGroup"
     )
     public void consumer(String message) {
-
-
-//        AccountId+" "+CustomerId+" "+AccountType+" "+Balance+" "+enable;
         LOGGER.info(String.format("Event message received => %s", message));
-
-//        customerId+" "+accountId+" "+accountType+" "+balance;
 
         Long customerId=Long.parseLong(message.split(" ")[0]);
         Long accountId=Long.parseLong(message.split(" ")[1]);
@@ -59,33 +54,9 @@ public class CreateAccountConsumer {
             accountService.createAccount(bankAccount);
         }
         else{
-//            bankAccountTmp.setStatus(AccountStatus.ACTIVE);
             accountService.enableAccount(accountId);
         }
 
     }
 
-//    @KafkaListener(
-//            topics = "create_account",
-//            groupId = "myGroup"
-//    )
-//    public void consumer(MessageCreateAccount messageCreateAccount) {
-//
-//
-////        AccountId+" "+CustomerId+" "+AccountType+" "+Balance+" "+enable;
-//        LOGGER.info(String.format("Event message received => %s", messageCreateAccount));
-//
-//
-//        BankAccount account= BankAccount.builder()
-//                .accountId(messageCreateAccount.getAccountId())
-//                .userId(messageCreateAccount.getCustomerId())
-//                .enable(messageCreateAccount.getEnable())
-//                .build();
-//        if(messageCreateAccount.getAccountType().equals("SAVINGS")){
-//            account.setAccountType(AccountType.SAVINGS);
-//        }else if (messageCreateAccount.getAccountType().equals("CHECKOUT")){
-//            account.setAccountType(AccountType.CHECKOUT);
-//        }
-//        accountService.createAccount(account);
-//    }
 }

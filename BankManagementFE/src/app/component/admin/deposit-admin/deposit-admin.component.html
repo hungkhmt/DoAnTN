@@ -2,20 +2,20 @@
 <div class="deposit-container">
   <div class="deposit-body">
     <h2>Deposit</h2>
-    <form>
+    <form [formGroup]="tranferForm">
       <mat-form-field appearance="fill">
         <mat-label>Account number</mat-label>
-        <input matInput placeholder="Enter Account number" required>
+        <input matInput placeholder="Enter Account number" formControlName="accountId">
       </mat-form-field>
   
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter name" required>
+        <input matInput placeholder="Enter name">
       </mat-form-field>
   
       <mat-form-field appearance="fill">
         <mat-label>Deposit amount</mat-label>
-        <input matInput type="number" placeholder="Enter amount" required>
+        <input matInput type="number" placeholder="Enter amount" formControlName="amount">
       </mat-form-field>
   
       <mat-form-field appearance="fill">
@@ -32,7 +32,7 @@
       </mat-form-field>
   
       <div class="confirmButton">
-        <button>Send</button>
+        <button (click)="onFormSubmit()">Send</button>
       </div>
       
     </form>

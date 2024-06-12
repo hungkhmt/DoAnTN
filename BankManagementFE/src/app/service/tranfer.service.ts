@@ -50,4 +50,18 @@ export class TranferService {
       let params = new HttpParams().set('mounth', mounth);
       return this.http.get(`${this.url.concat('/destinationId')}/${accId}`, {params, headers});
     }
+
+    getTransactionsByAccountId(id: number, page: number = 0, limit: number = 4): Observable<any> {
+      const headers = this.authService.getAuthHeaders();
+      let params = new HttpParams()
+        .set('page', page.toString())
+        .set('limit', limit.toString());
+  
+      return this.http.get(`${this.url}/transaction-by-accountId/${id}`, { params, headers });
+    }
+
+    getTotalTransaction(): Observable<any> {
+      const headers = this.authService.getAuthHeaders();
+      return this.http.get(this.url.concat('/total'), {headers});
+    }
 }

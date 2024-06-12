@@ -15,10 +15,10 @@ public interface IAccountService {
     boolean updateAccount(AccountDto accountDto);
     void updateBalance(Long idAccount,Long amount);
     public List<AccountDto> getAllAccount();
+    public List<Accounts> getAllAccountPending();
     boolean deleteAccount(Long accountNumber);
     void enableAccount(Long accountNumber);
     void producerMessageUpdateAccountTransaction(MessageUpdateAccount messageUpdateAccount);
     Long getUserIdByAccountId(Long accountId);
-    public Long getUserIdByAccountId(Long accountId);
     public HashMap<Integer,Long> accountCreationStatistics();
 }

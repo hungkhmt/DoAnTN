@@ -86,9 +86,8 @@ public class AccountServiceImlp implements IAccountService {
         accounts.setStatus(AccountStatus.PENDING);
         accounts.setBalance(50_000L);
         accounts.setMaxTransactionAmount(2_000_000.0);
-        return  accountRepository.save(accounts);
-
 //        kafkaTemplate.send("create_account",accountDto.toString());
+        return  accountRepository.save(accounts);
     }
 
     @Override
@@ -106,6 +105,10 @@ public class AccountServiceImlp implements IAccountService {
             accountDtos.add(accountToAccountDTO(accounts1));
         }
         return accountDtos;
+    }
+
+    public List<Accounts> getAllAccountPending() {
+        return accountRepository.findAllIsPending();
     }
 
     @Override

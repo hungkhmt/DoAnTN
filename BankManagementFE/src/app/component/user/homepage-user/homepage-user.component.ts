@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { Chart, ChartModule } from 'angular-highcharts';
 import * as Highcharts from 'highcharts';
 import { UserService } from '../../../service/user.service';
@@ -12,16 +12,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { AddCardComponent } from '../add-card/add-card.component';
+import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-homepage-user',
   standalone: true,
   imports: [CommonModule, ChartModule, RouterModule, MatDatepickerModule, MatNativeDateModule, ReactiveFormsModule, MatFormField, MatLabel],
+  providers: [DecimalPipe],
   templateUrl: './homepage-user.component.html',
   styleUrls: ['./homepage-user.component.css']
 })
 export class HomepageUserComponent {
-  constructor(private userService: UserService, private accountService: AccountService,
-              private authService: AuthService, private transactionService: TranferService){}
+  constructor(private userService: UserService, private accountService: AccountService, public _dialog: MatDialog,
+              private authService: AuthService, private transactionService: TranferService, private decimalPipe: DecimalPipe){}
 
   fullname: String | undefined;
   type: String | undefined;
@@ -29,11 +33,17 @@ export class HomepageUserComponent {
   accIdStr: string | undefined;
   userId = this.authService.getUserId();
   listAcc: any[] | undefined;
+  formattedBalance: any;
 
   month: number | undefined;
   chartData: any[] = [];
 
   lineChart!: Chart;
+
+  transactions: Transaction[] = [];
+  totalPage: number = 0;
+  page: number = 0;
+  limit: number = 4;
 
   ngOnInit() {
     this.setCurrentMonth();
@@ -42,6 +52,7 @@ export class HomepageUserComponent {
     this.accIdStr = this.formatNumber(this.accId);
     this.getUserByUserId();
     this.getAllAccount();
+    this.loadTransactions(this.accId);
   }
 
   updateChartData(transactions1: Transaction[], transactions2: Transaction[]) {
@@ -190,14 +201,19 @@ export class HomepageUserComponent {
   setAccountId() {
     this.accountService.getAllAccountByUserId(this.authService.getUserId()).subscribe(
       respone => {
-        sessionStorage.setItem('currentAccount', respone[0].accountId);
+        if(respone.length > 0) {
+          sessionStorage.setItem('currentAccount', respone[0].accountId);
+        }
         // this.accId = respone[0].accountId;
       }
     )
   }
 
   formatNumber(value: any): any {
-    return value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    if(value){
+      return value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    }
+    return null;
   }
 
   getUserByUserId() {
@@ -230,6 +246,7 @@ export class HomepageUserComponent {
     this.accId = sessionStorage.getItem('currentAccount');
     this.accIdStr = this.formatNumber(this.accId);
     this.getTransactionApi(this.month!);
+    this.loadTransactions(this.accId);
   }
 
   nextSlide() {
@@ -238,5 +255,48 @@ export class HomepageUserComponent {
     this.accId = sessionStorage.getItem('currentAccount');
     this.accIdStr = this.formatNumber(this.accId);
     this.getTransactionApi(this.month!);
+    this.loadTransactions(this.accId);
+  }
+
+  loadTransactions(accountId: any) {
+    this.transactionService.getTransactionsByAccountId(accountId, this.page, this.limit).subscribe(
+      data => {
+        const transactionFormattedAmount = data.transactionList.map((transaction: Transaction) => ({
+          ...transaction,
+          amount: this.decimalPipe.transform(transaction.amount, '1.0-0')!
+        }));
+
+        this.transactions = transactionFormattedAmount;
+        this.totalPage = data.totalPage;
+      },
+      error => {
+        console.error('Error fetching transactions', error);
+      }
+    );
+  }
+
+  onPageChange(newPage: number): void {
+    this.page = newPage;
+    this.loadTransactions(this.accId);
+  }
+
+  getAmountPrefix(transaction: Transaction): string {
+    if (transaction.sourceAccountId == this.accId) {
+      return '-';
+    } else if (transaction.destinationAccountId == this.accId) {
+      return '+';
+    }
+    return '';
+  }
+
+  openAddCardForm() {
+    const dialogRef = this._dialog.open(AddCardComponent)
+    dialogRef.afterClosed().subscribe({
+      next: (res: any) => {
+        location.reload();
+      }, error: (err) => {
+        alert('fail')
+      }
+    })
   }
 }

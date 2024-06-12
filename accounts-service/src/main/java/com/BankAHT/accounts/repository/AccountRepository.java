@@ -19,8 +19,11 @@ public interface AccountRepository extends JpaRepository<Accounts,Long> {
     List<Accounts> findAllByCustomerId(Long customerId);
 
 
-    @Query("SELECT a FROM Accounts a WHERE a.status != 'PENDING' AND a.customerId =:customerId")
+    @Query("SELECT a FROM Accounts a WHERE a.status = 'ACTIVE' AND a.customerId =:customerId")
     List<Accounts> findAllByCustomerIdAndIsActive(@Param("customerId") Long customerId);
+
+    @Query("SELECT a FROM Accounts a WHERE a.status = 'PENDING'")
+    List<Accounts> findAllIsPending();
 
 
     @Transactional

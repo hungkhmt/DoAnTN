@@ -17,6 +17,7 @@ import {
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { AccountService } from '../../../service/account.service';
 import { Account } from '../../../model/account';
+import { ConfirmEnableComponent } from '../confirm-enable/confirm-enable.component';
 
 @Component({
   selector: 'app-accountmanagement-admin',
@@ -72,6 +73,15 @@ export class AccountmanagementAdminComponent {
     })
   }
 
+  deleteAcc(accId: any) {
+    this.accountService.deleteAccount(accId).subscribe({
+      next: (res) => {
+        alert('Delete Success');
+        this.getAllUser();
+      }
+    })
+  }
+
   // deleteUser(id: number) {
   //   this.userService.disableUser(id).subscribe({
   //     next: (res) => {
@@ -95,6 +105,20 @@ export class AccountmanagementAdminComponent {
     return [day, month, year].join('/');
   }
 
+  openEnableForm(data: any) {
+    const dialogRef = this._dialog.open(ConfirmEnableComponent, {
+      data,
+    })
+    dialogRef.afterClosed().subscribe({
+      next: (res: any) => {
+        this.getAllUser();
+        location.reload();
+      }, error: (err) => {
+        alert('fail')
+      }
+    })
+  }
+
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
@@ -103,6 +127,4 @@ export class AccountmanagementAdminComponent {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-
 }

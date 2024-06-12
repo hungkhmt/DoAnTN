@@ -1,6 +1,8 @@
 package org.example.transactionservice.repository;
 
 import org.example.transactionservice.model.Transaction;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -15,7 +17,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findAllByMonth(@Param("month") int month);
 
     @Query("SELECT tr FROM Transaction tr WHERE tr.sourceAccountId =:id OR tr.destinationAccountId =:id")
-    List<Transaction> findByIdAccounts(Long id);
+    Page<Transaction> findByIdAccounts(Long id, Pageable pageable);
 
     @Query(value = "SELECT * FROM Transaction t WHERE t.source_account_id = :sourceAccountId AND MONTH(t.transaction_date) = :month", nativeQuery = true)
     List<Transaction> findBySourceAccountId(@Param("sourceAccountId") Long sourceAccountId, @Param("month") int month);

@@ -22,12 +22,15 @@ export class AccountComponent implements AfterViewInit{
   fullname: string | undefined;
   formattedBalance: string | undefined;
 
-  constructor(private accountService: AccountService, private authService: AuthService, private userService: UserService) {}
+  constructor(private accountService: AccountService, private authService: AuthService, 
+              private userService: UserService, private decimalPipe: DecimalPipe) {}
 
   ngOnInit(): void {
     this.accountService.getAllAccountByUserId(this.userId).subscribe((data: any[]) => {
-      this.accounts = data;
-      console.log("lor", this.accounts);
+      this.accounts = data.map(account => ({
+        ...account,
+        balance: this.decimalPipe.transform(account.balance, '1.0-0')
+      }));
     });
     this.getUserByUserId();
   }

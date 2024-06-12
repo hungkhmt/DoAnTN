@@ -34,7 +34,7 @@ public class TransactionService implements ITransactionService {
     // handle transfer action
     @Transactional
     @Override
-    public Transaction transfer(TransferDto transferDto) throws Exception {
+    public synchronized Transaction transfer(TransferDto transferDto) throws Exception {
         BankAccount sourceAcc = bankAccountService.getBankAccById(transferDto.getSourceAccountId());
         BankAccount destinationAcc = bankAccountService.getBankAccById(transferDto.getDestinationAccountId());
 
@@ -65,7 +65,7 @@ public class TransactionService implements ITransactionService {
     // function handle withdraw
     @Transactional
     @Override
-    public Transaction withdraw(WithdrawDto withdrawDto) throws Exception {
+    public synchronized Transaction withdraw(WithdrawDto withdrawDto) throws Exception {
         BankAccount sourceAcc = bankAccountService.getBankAccById(withdrawDto.getAccountId());
 
         if (sourceAcc.getBalance() < withdrawDto.getAmount()|| sourceAcc.getBalance() - withdrawDto.getAmount() < 50_000) {
@@ -90,7 +90,7 @@ public class TransactionService implements ITransactionService {
     // function handle deposit
     @Transactional
     @Override
-    public Transaction deposit(DepositDto depositDto) throws Exception {
+    public synchronized  Transaction deposit(DepositDto depositDto) throws Exception {
         BankAccount destinationAcc = bankAccountService.getBankAccById(depositDto.getAccountId());
 
         Transaction transaction = Transaction
@@ -113,9 +113,13 @@ public class TransactionService implements ITransactionService {
         return transactionRepository.findAllByMonth(mounth);
     }
 
+    public List<Transaction> findAllTransaction() {
+        return transactionRepository.findAll();
+    }
+
     @Override
-    public List<Transaction> findByIdAccounts(Long id) {
-        List<Transaction> optionalTransaction= transactionRepository.findByIdAccounts(id);
+    public Page<Transaction> findByIdAccounts(Long id, Pageable pageable) {
+        Page<Transaction> optionalTransaction= transactionRepository.findByIdAccounts(id, pageable);
 
         return optionalTransaction;
 

@@ -52,6 +52,12 @@ public class UserController {
         return userDTOS;
     }
 
+    @GetMapping("/total")
+    public ApiResponse<Integer> getTotalUser() {
+        List<User> users = userService.getAllUsers();
+        return ApiResponse.<Integer>builder().result(users.size()).build();
+    }
+
     @GetMapping("/ad/role")
     public List<User> getAllUserWithRoles() {
         return userService.getAllUsers();

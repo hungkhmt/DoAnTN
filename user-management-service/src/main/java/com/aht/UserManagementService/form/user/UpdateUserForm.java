@@ -20,12 +20,10 @@ public class UpdateUserForm {
 
     @NotBlank(message = "{User.createUser.username.NotBlank}")
     @Length(min = 6, max = 30, message = "{User.createUser.username.LenghtRange}")
-    @UsernameNotExists(message = "{User.createUser.username.NotExists}")
     private String username;
 
     @NotBlank(message = "{User.createUser.email.NotBlank}")
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "{User.email.Pattern}")
-    @EmailNotExists(message = "{User.createUser.email.NotExists}")
     private String email;
 
     @NotBlank(message = "{User.createUser.fullname.NotBlank}")

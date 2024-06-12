@@ -1,6 +1,7 @@
 package com.BankAHT.accounts.controller;
 
 import com.BankAHT.accounts.dto.AccountDto;
+import com.BankAHT.accounts.dto.ApiResponse;
 import com.BankAHT.accounts.dto.MessageUpdateAccount;
 import com.BankAHT.accounts.dto.UserDTO;
 import com.BankAHT.accounts.entity.Accounts;
@@ -39,6 +40,18 @@ public class AccountController {
     @GetMapping("/ad")
     public List<AccountDto> getAllAccount() {
         return accountService.getAllAccount();
+    }
+
+    @GetMapping("/ad/total")
+    public ApiResponse<Integer> getTotalAccount() {
+        List<AccountDto> accountDtos = accountService.getAllAccount();
+        return ApiResponse.<Integer>builder().result(accountDtos.size()).build();
+    }
+
+    @GetMapping("/ad/total/pending")
+    public ApiResponse<Integer> getTotalAccountPending() {
+        List<Accounts> accounts = accountService.getAllAccountPending();
+        return ApiResponse.<Integer>builder().result(accounts.size()).build();
     }
 
     @GetMapping("/accountInfo")
@@ -126,11 +139,11 @@ public class AccountController {
     }
 
     @PostMapping("/ad/enable")
-    public ResponseEntity<?> enableAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
+    public ApiResponse<Void> enableAccount(@RequestParam @Min(value = 0, message = "AccountNumber phải là một số không âm")
                                            @Max(value = 9999999999999999L, message = "AccountNumber không được vượt quá 16 chữ số")
                                            Long accountId){
         accountService.enableAccount(accountId);
-        return ResponseEntity.status(HttpStatus.OK).body("Enable Account "+accountId+" Success !");
+        return ApiResponse.<Void>builder().build();
     }
 
     @GetMapping("/user_infor/{accountId}")

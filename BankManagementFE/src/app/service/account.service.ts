@@ -28,6 +28,16 @@ export class AccountService {
       return this.http.get(this.url.concat('/ad'), {headers});
     }
 
+    getTotalAccount(): Observable<any>{
+      const headers = this.authService.getAuthHeaders();
+      return this.http.get(this.url.concat('/ad/total'), {headers});
+    }
+
+    getTotalAccountPending(): Observable<any>{
+      const headers = this.authService.getAuthHeaders();
+      return this.http.get(this.url.concat('/ad/total/pending'), {headers});
+    }
+
     getAllAccountByUserId(userId: any): Observable<any[]>{
       const headers = this.authService.getAuthHeaders();
       let params = new HttpParams().set('userId', userId.toString());
@@ -56,5 +66,23 @@ export class AccountService {
       const headers = this.authService.getAuthHeaders();
       let params = new HttpParams().set('accountId', accId.toString());
       return this.http.get(this.url.concat('/fetch'), {params, headers});
+    }
+
+    createAcc(data: any): Observable<any>{
+      const headers = this.authService.getAuthHeaders();
+      return this.http.post(this.url.concat('/create'), data, { headers });
+    }
+
+    enableAccount(accId: any): Observable<any>{
+      console.log("id", accId);
+      const headers = this.authService.getAuthHeaders();
+      let params = new HttpParams().set('accountId', accId.toString());
+      return this.http.post(this.url.concat('/ad/enable'),{}, { params, headers });
+    }
+
+    deleteAccount(accId: any): Observable<any>{
+      const headers = this.authService.getAuthHeaders();
+      let params = new HttpParams().set('accountId', accId.toString());
+      return this.http.post(this.url.concat('/delete'),{}, { params, headers });
     }
 }

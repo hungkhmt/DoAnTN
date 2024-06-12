@@ -93,7 +93,6 @@ export class SidebarUserComponent {
       respone => {
         token = sessionStorage.getItem('authToken');
         if(respone && token == null) {
-          
           this.router.navigate(['/registration']);
         }
       }

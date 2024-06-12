@@ -212,12 +212,19 @@
     grid-column: 1 / 3;
     grid-row: 2 / 3;
     height: 30vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
 }
 
 .all-transactions .tabs {
     display: flex;
     border-bottom: 2px solid #f0f2f5;
-    margin-bottom: 10px;
+    height: 30px;
+    flex-shrink: 0;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: end;
 }
 
 .all-transactions .tabs .tab {
@@ -227,6 +234,7 @@
 
 .all-transactions .transactions-table {
     overflow-x: auto;
+    flex: 1 0 auto;
 }
 
 .all-transactions .transactions-table table {
@@ -247,6 +255,10 @@
 
 .all-transactions .transactions-table .positive {
     color: green;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #edebeb;
 }
 
 .all-transactions .transactions-table .download-btn {
@@ -317,7 +329,7 @@
   }
   
   .navigation button {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -328,4 +340,16 @@
   
   .navigation button:hover {
     background-color: rgba(0, 0, 0, 0.7);
-  }
+}
+
+.tabs button {
+    height: 90%;
+    width: 80px;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 5px;
+    border: #444 solid 1px;
+    margin-left: 3px;
+    margin-right: 3px;
+    justify-content: end;
+}
